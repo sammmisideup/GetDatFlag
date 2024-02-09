@@ -7,6 +7,7 @@ using TMPro;
 using UnityEngine.UI;
 using Unity.Services.Lobbies;
 using Unity.Services.Lobbies.Models;
+using UnityEngine.SceneManagement;
 
 public class LobbyManager : MonoBehaviour
 {
@@ -33,12 +34,17 @@ public class LobbyManager : MonoBehaviour
     [SerializeField] private GameObject playerInfoContent;
     [SerializeField] private GameObject playerInfoPrefab;
     [SerializeField] private Button leaveRoomBtn;
+    [SerializeField] private Button startGameBtn;
 
     [Space(10)]
     [Header("Join Room With Code")]
     [SerializeField] private GameObject joinRoomPanel;
     [SerializeField] private TMP_InputField roomCodeIF;
     [SerializeField] private Button joinRoomBtn;
+
+
+
+
 
     private Lobby currentLobby;
 
@@ -73,6 +79,7 @@ public class LobbyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        HandleLobbiesListUpdate();
         HandleLobbyHeartbeat();
         HandleRoomUpdate();
     }
@@ -86,7 +93,11 @@ public class LobbyManager : MonoBehaviour
         CreateLobbyOptions options = new CreateLobbyOptions
         {
             IsPrivate = isPrivateToggle.isOn,
-            Player = GetPlayer()
+            Player = GetPlayer(),
+            Data = new Dictionary <string, DataObject>
+            {
+                {"IsGameStarted", new DataObject(DataObject.VisibilityOptions.Member,"false")}
+            }
         };
         currentLobby = await LobbyService.Instance.CreateLobbyAsync(lobbyName, maxPlayers, options);
         EnterRoom();
@@ -129,8 +140,7 @@ public class LobbyManager : MonoBehaviour
                 catch(LobbyServiceException e)
                 {
                     Debug.Log(e);
-                    if(currentLobby.IsPrivate && 
-                    (e.Reason == LobbyExceptionReason.Forbidden || e.Reason==LobbyExceptionReason.LobbyNotFound))
+                    if((e.Reason == LobbyExceptionReason.Forbidden || e.Reason==LobbyExceptionReason.LobbyNotFound))
                     {
                         currentLobby = null;
                         ExitRoom();
@@ -174,6 +184,31 @@ public class LobbyManager : MonoBehaviour
                 }
                 
             }
+
+            if(IsHost())
+            {
+                startGameBtn.onClick.AddListener(StartGame);
+                startGameBtn.gameObject.SetActive(true);
+            }
+            else
+            {
+                if (IsGameStarted())
+                {
+                    EnterGame();
+
+                    //startGameBtn.onClick.AddListener(EnterGame);
+                    //startGameBtn.gameObject.SetActive(true);
+                    //startGameBtn.GetComponentInChildren<TextMeshProUGUI>().text = "Enter Game";
+                    // Add On Click Listener to Enter Game Button
+                }
+                else
+                {
+                    startGameBtn.onClick.RemoveAllListeners();
+                    startGameBtn.gameObject.SetActive(false);
+
+                }
+            }
+
         } 
         else
         {
@@ -190,6 +225,18 @@ public class LobbyManager : MonoBehaviour
         }catch(LobbyServiceException e)
         {
             Debug.Log(e);
+        }
+    }
+
+    private float updateLobbiesListTimer = 2f;
+
+    private void HandleLobbiesListUpdate()
+    {
+        updateLobbiesListTimer -= Time.deltaTime;
+        if (updateLobbiesListTimer <= 0)
+        {
+            ListPublicLobbies();
+            updateLobbiesListTimer = 2f;
         }
     }
 
@@ -322,6 +369,53 @@ public class LobbyManager : MonoBehaviour
         roomPanel.SetActive(false);
         ListPublicLobbies();
     }
+
+    private async void StartGame()
+    {
+        if (currentLobby != null && IsHost()) 
+        {
+            try
+            {
+                UpdateLobbyOptions updateOptions = new UpdateLobbyOptions
+                {
+                    Data = new Dictionary<string, DataObject>
+                    {
+                        {"IsGameStarted", new DataObject(DataObject.VisibilityOptions.Member,"true" )}
+                    }
+                };
+
+                currentLobby = await LobbyService.Instance.UpdateLobbyAsync(currentLobby.Id, updateOptions);
+
+                EnterGame();
+
+            }catch(LobbyServiceException e)
+            {
+                Debug.Log(e);
+            }
+        }   
+    }
+
+    private bool IsGameStarted()
+    {
+        if (currentLobby != null)
+        {
+            if(currentLobby.Data["IsGameStarted"].Value == "true")
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void EnterGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        //or load another scene
+    }
+
+
+
+
 
 
 
