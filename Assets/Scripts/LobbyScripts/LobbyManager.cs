@@ -8,6 +8,7 @@ using UnityEngine.UI;
 using Unity.Services.Lobbies;
 using Unity.Services.Lobbies.Models;
 using UnityEngine.SceneManagement;
+using Unity.Netcode;
 
 public class LobbyManager : MonoBehaviour
 {
@@ -399,6 +400,7 @@ public class LobbyManager : MonoBehaviour
     {
         if (currentLobby != null)
         {
+            NetworkManager.Singleton.StartClient();
             if(currentLobby.Data["IsGameStarted"].Value == "true")
             {
                 return true;
@@ -409,7 +411,8 @@ public class LobbyManager : MonoBehaviour
 
     private void EnterGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        NetworkManager.Singleton.StartHost();
+        Loader.LoadNetwork(Loader.Scene.Gameplay);
         //or load another scene
     }
 
