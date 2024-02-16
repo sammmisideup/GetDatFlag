@@ -80,7 +80,6 @@ public class LobbyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        HandleLobbiesListUpdate();
         HandleLobbyHeartbeat();
         HandleRoomUpdate();
     }
@@ -226,18 +225,6 @@ public class LobbyManager : MonoBehaviour
         }catch(LobbyServiceException e)
         {
             Debug.Log(e);
-        }
-    }
-
-    private float updateLobbiesListTimer = 2f;
-
-    private void HandleLobbiesListUpdate()
-    {
-        updateLobbiesListTimer -= Time.deltaTime;
-        if (updateLobbiesListTimer <= 0)
-        {
-            ListPublicLobbies();
-            updateLobbiesListTimer = 2f;
         }
     }
 
