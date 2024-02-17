@@ -7,7 +7,9 @@ using Cinemachine;
 public class PlayerController : NetworkBehaviour
 {
     [Header("Movement")]
-    public float moveSpeed;
+    private NetworkVariable<float> moveSpeed = new NetworkVariable<float>(8, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+
+    private NetworkVariable<float> strength = new NetworkVariable<float>(5, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     public float groundDrag;    
 
@@ -82,7 +84,11 @@ public class PlayerController : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("Client# " + OwnerClientId + "; movement speed: " + moveSpeed.Value + "; strength: " + strength.Value); // i-comment mo 'to kung ayaw mo yung sunod-sunod sa Logs
+
+
         if(!IsOwner) return;
+
 
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
 
@@ -97,6 +103,20 @@ public class PlayerController : NetworkBehaviour
 
         MyInput();
         SpeedControl();
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            moveSpeed.Value = 20;
+            // Debug.Log("Client# " + OwnerClientId + "; movement speed: " + moveSpeed.Value);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            strength.Value = 10;
+            // Debug.Log("Client# " + OwnerClientId + "; strength: " + strength.Value);
+        }
+
+
     }
 
     void MyInput()
@@ -127,13 +147,13 @@ public class PlayerController : NetworkBehaviour
         //on ground
         if(grounded)
         {
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+            rb.AddForce(moveDirection.normalized * moveSpeed.Value * 10f, ForceMode.Force);
         }
 
         //in air
         else if(!grounded)
         {
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
+            rb.AddForce(moveDirection.normalized * moveSpeed.Value * 10f * airMultiplier, ForceMode.Force);
         }
         
 
@@ -146,9 +166,9 @@ public class PlayerController : NetworkBehaviour
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
         //limit moveSpeed
-        if(flatVel.magnitude > moveSpeed)
+        if(flatVel.magnitude > moveSpeed.Value)
         {
-            Vector3 limitedVel = flatVel.normalized * moveSpeed;
+            Vector3 limitedVel = flatVel.normalized * moveSpeed.Value;
             rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
         }
     }
