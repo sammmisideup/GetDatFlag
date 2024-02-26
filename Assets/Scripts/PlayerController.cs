@@ -7,9 +7,9 @@ using Cinemachine;
 public class PlayerController : NetworkBehaviour
 {
     [Header("Movement")]
-    private NetworkVariable<float> moveSpeed = new NetworkVariable<float>(8, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<float> moveSpeed = new NetworkVariable<float>(8, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
-    private NetworkVariable<float> strength = new NetworkVariable<float>(5, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<float> strength = new NetworkVariable<float>(5, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     public float groundDrag;    
 
@@ -84,7 +84,7 @@ public class PlayerController : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Client# " + OwnerClientId + "; movement speed: " + moveSpeed.Value + "; strength: " + strength.Value); // i-comment mo 'to kung ayaw mo yung sunod-sunod sa Logs
+        // Debug.Log("Client# " + OwnerClientId + "; movement speed: " + moveSpeed.Value + "; strength: " + strength.Value); // i-comment mo 'to kung ayaw mo yung sunod-sunod sa Logs
 
 
         if(!IsOwner) return;
@@ -104,17 +104,17 @@ public class PlayerController : NetworkBehaviour
         MyInput();
         SpeedControl();
 
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            moveSpeed.Value = 20;
-            // Debug.Log("Client# " + OwnerClientId + "; movement speed: " + moveSpeed.Value);
-        }
+        // if (Input.GetKeyDown(KeyCode.T))
+        // {
+        //     moveSpeed.Value = 20;
+        //     // Debug.Log("Client# " + OwnerClientId + "; movement speed: " + moveSpeed.Value);
+        // }
 
-        if (Input.GetKeyDown(KeyCode.Y))
-        {
-            strength.Value = 10;
-            // Debug.Log("Client# " + OwnerClientId + "; strength: " + strength.Value);
-        }
+        // if (Input.GetKeyDown(KeyCode.Y))
+        // {
+        //     strength.Value = 10;
+        //     // Debug.Log("Client# " + OwnerClientId + "; strength: " + strength.Value);
+        // }
 
 
     }
