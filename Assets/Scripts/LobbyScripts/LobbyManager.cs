@@ -9,6 +9,11 @@ using Unity.Services.Lobbies;
 using Unity.Services.Lobbies.Models;
 using UnityEngine.SceneManagement;
 using Unity.Netcode;
+using Unity.Services.Relay;
+using Unity.Services.Relay.Models;
+using Unity.Netcode.Transports.UTP;
+using Unity.Networking.Transport.Relay;
+using System.Threading.Tasks;
 
 public class LobbyManager : MonoBehaviour
 {
@@ -45,7 +50,7 @@ public class LobbyManager : MonoBehaviour
 
 
 
-
+    private const string KEY_RELAY_JOIN_CODE = "RelayJoinCode";
 
     private Lobby currentLobby;
 
@@ -80,8 +85,44 @@ public class LobbyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        HandleLobbiesListUpdate();
         HandleLobbyHeartbeat();
         HandleRoomUpdate();
+    }
+
+    private async Task<Allocation> AllocateRelay() {
+        try {
+        Allocation allocation = await RelayService.Instance.CreateAllocationAsync(4 - 1);
+        
+        return allocation;
+        }catch (RelayServiceException e) {
+           Debug.Log(e);
+           
+           return default;
+        }
+    }
+
+    private async Task<string> GetRelayJoinCode(Allocation allocation) {
+        try {
+        string relayJoinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
+    
+        return relayJoinCode;
+        }catch (RelayServiceException e) {
+            Debug.Log(e);
+            return default;
+        }
+
+    }
+
+    private async Task<JoinAllocation> JoinRelay(string joinCode) {
+        try {
+        JoinAllocation joinAllocation = await RelayService.Instance.JoinAllocationAsync(joinCode);
+        
+        return joinAllocation;
+        } catch (RelayServiceException e) {
+            Debug.Log(e);
+            return default;
+        }
     }
 
     private async void CreateLobby()
@@ -100,6 +141,19 @@ public class LobbyManager : MonoBehaviour
             }
         };
         currentLobby = await LobbyService.Instance.CreateLobbyAsync(lobbyName, maxPlayers, options);
+        
+        Allocation allocation = await AllocateRelay();
+
+                string relayJoinCode = await GetRelayJoinCode(allocation);
+
+                await LobbyService.Instance.UpdateLobbyAsync(currentLobby.Id, new UpdateLobbyOptions {
+                    Data = new Dictionary<string, DataObject> {
+                        {KEY_RELAY_JOIN_CODE , new DataObject(DataObject.VisibilityOptions.Member, relayJoinCode)}
+                    }
+                });
+
+                NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(allocation, "dtls"));
+        
         EnterRoom();
         }
         catch(LobbyServiceException e)
@@ -228,6 +282,18 @@ public class LobbyManager : MonoBehaviour
         }
     }
 
+    private float updateLobbiesListTimer = 2f;
+
+   private void HandleLobbiesListUpdate()
+    {
+        updateLobbiesListTimer -= Time.deltaTime;
+        if (updateLobbiesListTimer <= 0)
+        {
+            ListPublicLobbies();
+            updateLobbiesListTimer = 2f;
+        }
+    }
+
     // For the open public lobbies info
     private void VisualizeLobbyList(List<Lobby> _publicLobbies)
     {
@@ -255,6 +321,14 @@ public class LobbyManager : MonoBehaviour
                 Player = GetPlayer()
             };
             currentLobby = await LobbyService.Instance.JoinLobbyByIdAsync(_lobbyId, options);
+            
+            string relayJoinCode = currentLobby.Data[KEY_RELAY_JOIN_CODE].Value;
+        
+        JoinAllocation joinAllocation = await JoinRelay(relayJoinCode);
+
+        NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(joinAllocation, "dtls"));
+        //NetworkManager.Singleton.StartClient();
+            
             EnterRoom();
             Debug.Log("Player in room : " + currentLobby.Players.Count);
         }
@@ -374,7 +448,10 @@ public class LobbyManager : MonoBehaviour
 
                 currentLobby = await LobbyService.Instance.UpdateLobbyAsync(currentLobby.Id, updateOptions);
 
-                EnterGame();
+                NetworkManager.Singleton.StartHost();
+                Loader.LoadNetwork(Loader.Scene.Gameplay);
+
+                //EnterGame();
 
             }catch(LobbyServiceException e)
             {
@@ -398,8 +475,8 @@ public class LobbyManager : MonoBehaviour
 
     private void EnterGame()
     {
-        NetworkManager.Singleton.StartHost();
-        Loader.LoadNetwork(Loader.Scene.Gameplay);
+        NetworkManager.Singleton.StartClient();
+        //Loader.LoadNetwork(Loader.Scene.Gameplay);
         //or load another scene
     }
 
