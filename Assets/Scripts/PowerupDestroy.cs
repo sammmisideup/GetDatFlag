@@ -27,7 +27,7 @@ public class PowerupDestroy : NetworkBehaviour
 
     }
 
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     private void DestroyPowerupServerRpc()
     {
         Destroy(pickupClone);

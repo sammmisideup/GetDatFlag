@@ -41,7 +41,7 @@ public class PowerupSpawner : NetworkBehaviour
         }
     }
 
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     private void SpawnObjectServerRpc()
     {   
         int randPickup = Random.Range(0, pickups.Length);

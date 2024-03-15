@@ -5,14 +5,12 @@ using Unity.Netcode;
 
 public class Powerup : NetworkBehaviour
 {
-    // public GameObject Player;
+    public NetworkVariable<float> buffedMovespeed = new NetworkVariable<float>(5, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public NetworkVariable<float> buffedKnockback = new NetworkVariable<float>(5, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
+    [SerializeField] private GameObject playerController;
+    [SerializeField] private GameObject hand2;
 
     private void OnTriggerEnter(Collider col)
     {
@@ -25,7 +23,8 @@ public class Powerup : NetworkBehaviour
             // AudioClip clip = pickupSFX[UnityEngine.Random.Range(0, pickupSFX.Length)]; // AUDIO
             // audioSrc.PlayOneShot(clip);            
 
-            this.GetComponent<PlayerController>().moveSpeed.Value += 10;
+            playerController.GetComponent<PlayerController>().moveSpeed.Value += buffedMovespeed.Value;
+
             // playerLives.text = "Lives \n" + Player.GetComponent<LivesRespawn>().lives; // TEXT UPDATE IF THERE'S ONE
             PowerupMessageServerRpc(0);
             // Destroy(whatHit);
@@ -36,11 +35,13 @@ public class Powerup : NetworkBehaviour
             // AudioClip clip = pickupSFX[UnityEngine.Random.Range(0, pickupSFX.Length)]; // AUDIO
             // audioSrc.PlayOneShot(clip);            
 
-            this.GetComponent<PlayerController>().strength.Value += 10;
+            hand2.GetComponent<MeleeDetection>().knockbackForce += buffedKnockback.Value;
+            
             // playerLives.text = "Lives \n" + Player.GetComponent<LivesRespawn>().lives; // TEXT UPDATE IF THERE'S ONE
             PowerupMessageServerRpc(1);
             // Destroy(whatHit);
-        }        
+        }
+    
 
     }
 
@@ -49,13 +50,19 @@ public class Powerup : NetworkBehaviour
     {
         if(value == 0)
         {
-            Debug.Log("Client#" + OwnerClientId + " +10 Speed");
+            Debug.Log("Client#" + OwnerClientId + " +5 Speed");
         }
 
         if(value == 1)
         {
-            Debug.Log("Client#" + OwnerClientId + " +10 Strength");
+            Debug.Log("Client#" + OwnerClientId + " +5 Strength");
         }
+
+        if(value == 2)
+        {
+            Debug.Log("Client#" + OwnerClientId + " +Club Weapon");
+        }
+
     }
 
 

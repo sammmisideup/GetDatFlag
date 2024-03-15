@@ -10,6 +10,8 @@ public class NetworkManagerUI : MonoBehaviour
     [SerializeField] private Button hostBtn;
     [SerializeField] private Button clientBtn;
 
+    [SerializeField] private GameObject panel;
+
     [SerializeField] private GameObject menuCam;     
 
 
@@ -21,7 +23,8 @@ public class NetworkManagerUI : MonoBehaviour
             NetworkManager.Singleton.StartHost();
             hostBtn.gameObject.SetActive(false);
             clientBtn.gameObject.SetActive(false);
-            menuCam.SetActive(false);            
+            menuCam.SetActive(false);    
+            panel.SetActive(false);   
         });
 
         clientBtn.onClick.AddListener(() =>
@@ -30,6 +33,7 @@ public class NetworkManagerUI : MonoBehaviour
             hostBtn.gameObject.SetActive(false);
             clientBtn.gameObject.SetActive(false);
             menuCam.SetActive(false); 
+            panel.SetActive(false);
         });
 
 

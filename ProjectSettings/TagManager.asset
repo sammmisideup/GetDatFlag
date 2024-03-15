@@ -6,6 +6,14 @@ TagManager:
   tags:
   - speedBoost
   - strengthBoost
+  - meleeWeapon
+  - flag
+  - Team2
+  - Team1
+  - weaponPickup
+  - SetTeam1
+  - SetTeam2
+  - Dummy
   layers:
   - Default
   - TransparentFX

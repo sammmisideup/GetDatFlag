@@ -41,6 +41,8 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] private CinemachineFreeLook fl;
     [SerializeField] private AudioListener listener;
 
+    [SerializeField] private Animator animator; // FOR 3D PLAYER
+
 
     public override void OnNetworkSpawn()
     {
@@ -126,14 +128,22 @@ public class PlayerController : NetworkBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
+        animator.SetFloat("speed", Mathf.Abs(verticalInput)); // FOR MOVEMENT ANIMATION
+
         //when to jump
         if(Input.GetKey(jumpKey) && readyToJump && grounded)
         {
+            animator.SetBool("jump", true);
             readyToJump = false;
 
             Jump();
 
             Invoke(nameof(ResetJump), jumpCooldown);
+        }
+
+        if(Input.GetMouseButtonDown(0))
+        {
+            animator.SetTrigger("isAttacking");
         }
     }
 
@@ -148,6 +158,7 @@ public class PlayerController : NetworkBehaviour
         if(grounded)
         {
             rb.AddForce(moveDirection.normalized * moveSpeed.Value * 10f, ForceMode.Force);
+            animator.SetBool("jump", false);
         }
 
         //in air
@@ -177,11 +188,14 @@ public class PlayerController : NetworkBehaviour
     {
         if(!IsOwner) return;
 
+        
         //reset Y velocity
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
         rb.AddForce(Vector3.down * 200f, ForceMode.Force);
+
+        
 
     }
 
