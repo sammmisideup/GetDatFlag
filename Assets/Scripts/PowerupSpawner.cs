@@ -25,6 +25,7 @@ public class PowerupSpawner : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!IsServer) return;
         UpdateTimer();
     }
 
