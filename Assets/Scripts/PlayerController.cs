@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 using Cinemachine;
+using TMPro;
 
 public class PlayerController : NetworkBehaviour
 {
@@ -10,6 +11,8 @@ public class PlayerController : NetworkBehaviour
     public NetworkVariable<float> moveSpeed = new NetworkVariable<float>(8, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     public NetworkVariable<float> strength = new NetworkVariable<float>(5, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+
+    [SerializeField] private TextMeshProUGUI playerNameInput;
 
     public float groundDrag;    
 
@@ -74,6 +77,8 @@ public class PlayerController : NetworkBehaviour
         rb.freezeRotation = true;
 
         readyToJump = true;
+
+        playerNameInput.text = PlayerPrefs.GetString("Name");
     }
 
     void FixedUpdate()

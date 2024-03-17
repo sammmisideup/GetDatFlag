@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 
+
 public class StartCountDown : NetworkBehaviour
 {
     CountDown countDown;
+
 
     private GameObject flagClone;   
 
@@ -13,7 +15,6 @@ public class StartCountDown : NetworkBehaviour
     void Start()
     {
         countDown = gameObject.GetComponent<CountDown>();
-
     }
 
     void Update()

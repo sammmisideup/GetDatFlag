@@ -154,6 +154,10 @@ public class LobbyManager : MonoBehaviour
 
                 NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(allocation, "dtls"));
         
+        PlayerPrefs.SetString("Name", playerNameIF.text);
+        NetworkManager.Singleton.StartHost();
+        Loader.LoadNetwork(Loader.Scene.Gameplay);
+
         EnterRoom();
         }
         catch(LobbyServiceException e)
@@ -327,7 +331,8 @@ public class LobbyManager : MonoBehaviour
         JoinAllocation joinAllocation = await JoinRelay(relayJoinCode);
 
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(joinAllocation, "dtls"));
-        //NetworkManager.Singleton.StartClient();
+        
+        NetworkManager.Singleton.StartClient();
             
             EnterRoom();
             Debug.Log("Player in room : " + currentLobby.Players.Count);
@@ -348,6 +353,15 @@ public class LobbyManager : MonoBehaviour
                 Player = GetPlayer()
             };
             currentLobby = await LobbyService.Instance.JoinLobbyByCodeAsync(_lobbyCode, options);
+
+            string relayJoinCode = currentLobby.Data[KEY_RELAY_JOIN_CODE].Value;
+        
+            JoinAllocation joinAllocation = await JoinRelay(relayJoinCode);
+
+            NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(joinAllocation, "dtls"));
+
+            NetworkManager.Singleton.StartClient();
+
             EnterRoom();
             Debug.Log("Player in room : " + currentLobby.Players.Count);
         }
@@ -464,7 +478,6 @@ public class LobbyManager : MonoBehaviour
     {
         if (currentLobby != null)
         {
-            NetworkManager.Singleton.StartClient();
             if(currentLobby.Data["IsGameStarted"].Value == "true")
             {
                 return true;
@@ -475,7 +488,7 @@ public class LobbyManager : MonoBehaviour
 
     private void EnterGame()
     {
-        NetworkManager.Singleton.StartClient();
+        //NetworkManager.Singleton.StartClient();
         //Loader.LoadNetwork(Loader.Scene.Gameplay);
         //or load another scene
     }
