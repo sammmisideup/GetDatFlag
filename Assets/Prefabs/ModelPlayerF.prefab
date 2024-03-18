@@ -158,10 +158,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxTime:
     m_InternalValue: 10
+  timeRemaining: 0
   timer: {fileID: 5405834169111896669}
   youWon: {fileID: 1571797974669190921}
   roundDelay: 2
-  Spawn_Flag: {fileID: 0}
+  player: {fileID: 6530204079860664042}
 --- !u!114 &1926162479672432014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -946,7 +947,7 @@ GameObject:
   - component: {fileID: 599194783087368151}
   - component: {fileID: 2666546525585766749}
   m_Layer: 5
-  m_Name: w
+  m_Name: YouWonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -959,17 +960,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1571797974669190921}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -2.08}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.094}
   m_LocalScale: {x: 0.00978497, y: 0.00978497, z: 0.00978497}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4163714866641118444}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -510.61914, y: -283.241}
+  m_AnchoredPosition: {x: -509.353, y: -282.38092}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &599194783087368151
@@ -1000,7 +1001,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You Won
+  m_text: +1 Score
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1009,8 +1010,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1033,7 +1034,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -4430,7 +4431,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2478695, g: 0.16300283, b: 0.3490566, a: 1}
+  m_Color: {r: 0.31520838, g: 0.9056604, b: 0.11534355, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

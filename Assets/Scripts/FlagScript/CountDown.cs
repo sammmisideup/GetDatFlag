@@ -10,13 +10,17 @@ public class CountDown : NetworkBehaviour
     public static CountDown instance;
 
     public NetworkVariable<float> maxTime = new NetworkVariable<float>(10, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-    public Image timer;
-    float timeRemaining;
+
+    public float timeRemaining;
     //public float maxTime.Value = 10.0f;
+
+    public Image timer;
     public GameObject youWon;
     public float roundDelay = 2f;
 
     CountDown countDown;
+
+    public GameObject player;      
     
     void Awake() {
         if (instance == null)
@@ -41,19 +45,30 @@ public class CountDown : NetworkBehaviour
             timeRemaining -= Time.deltaTime;
             timer.fillAmount = timeRemaining / maxTime.Value;
         }
-        if (timeRemaining < 0)
-        {
-            
+        if ((player.CompareTag("Team1")|| player.CompareTag("Team2")) && timeRemaining <= 0)
+        { 
             Invoke("TimerMax", 2f);
-            Invoke("YouWonOn", 0f);
-            Invoke("YouWonOff", roundDelay);
+            YouWonOn();
+
             
-            DestroyFlag.instance.enabled = true;
             countDown.enabled = false;
             Debug.Log("Flag Destroy");
             Debug.Log(timeRemaining);
-            
-            
+
+        // to add score
+        if(player.CompareTag("Team1"))
+        {
+                TeamScore.team1Score.Value ++;          
+                Debug.Log("Team1 +1 Score!");
+        }
+
+        if(player.CompareTag("Team2"))
+        {
+                TeamScore.team2Score.Value ++;          
+                Debug.Log("Team2 +1 Score!");
+        }
+
+
         }
         
     }
@@ -73,9 +88,11 @@ public class CountDown : NetworkBehaviour
     private void YouWonOn()
     {
         
-        youWon.SetActive(true);
-        Debug.Log("Canvas");
-        Invoke("NewFlag", 0f);
+        youWon.SetActive(true);                        // CURRENT ISSUE IS THE HOST SCORE NOTIF DOESN'T SHOW UP ON THE CLIENT; BUT CLIENT'S SCORE SHOWS UP ON HIS SCREEN
+        Debug.Log("Player " + OwnerClientId + "Won");
+        FlagSpawner.instance.Start();
+
+        Invoke("YouWonOff", roundDelay);     
     }
 
     
@@ -89,6 +106,18 @@ public class CountDown : NetworkBehaviour
     private void NewFlag() {
         FlagSpawner.instance.Start();
     } 
+
+    private void OnTriggerStay(Collider col)
+    {
+        GameObject whatHit = col.gameObject;
+
+        if(timeRemaining < 0 && whatHit.CompareTag("Flag"))
+        {
+            DestroyFlag.instance.enabled = true;          
+        }
+
+
+    }
     
 
     
