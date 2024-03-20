@@ -332,6 +332,7 @@ public class LobbyManager : MonoBehaviour
 
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(joinAllocation, "dtls"));
         
+        PlayerPrefs.SetString("Name", playerNameIF.text);
         NetworkManager.Singleton.StartClient();
             
             EnterRoom();
@@ -360,6 +361,7 @@ public class LobbyManager : MonoBehaviour
 
             NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(new RelayServerData(joinAllocation, "dtls"));
 
+            PlayerPrefs.SetString("Name", playerNameIF.text);
             NetworkManager.Singleton.StartClient();
 
             EnterRoom();
@@ -462,8 +464,6 @@ public class LobbyManager : MonoBehaviour
 
                 currentLobby = await LobbyService.Instance.UpdateLobbyAsync(currentLobby.Id, updateOptions);
 
-                NetworkManager.Singleton.StartHost();
-                Loader.LoadNetwork(Loader.Scene.Gameplay);
 
                 //EnterGame();
 
