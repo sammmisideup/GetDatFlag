@@ -28,11 +28,11 @@ public class MeleeAttack : NetworkBehaviour
     }
 
 
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     private void WeaponAttackServerRpc()
     {
-        if(IsClient)
-        {
+        // if(IsClient)
+        // {
             isAttacking = true;
             canAttack = false;
             // Animator anim = meleeWeapon.GetComponent<Animator>();
@@ -42,7 +42,7 @@ public class MeleeAttack : NetworkBehaviour
             // ac.PlayOneShot(attackSFX); -- PLAYING THE AUDIO SOURCE
 
             StartCoroutine(ResetAttackCooldown());             
-        }
+        // }
     }
 
     IEnumerator ResetAttackCooldown()

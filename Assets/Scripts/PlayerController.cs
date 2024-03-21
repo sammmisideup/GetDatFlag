@@ -111,6 +111,8 @@ public class PlayerController : NetworkBehaviour
         MyInput();
         SpeedControl();
 
+
+
         // if (Input.GetKeyDown(KeyCode.T))
         // {
         //     moveSpeed.Value = 20;
@@ -126,6 +128,17 @@ public class PlayerController : NetworkBehaviour
 
     }
 
+    void PlayerRun()
+    {
+        if(!IsOwner) return;
+
+        if(moveSpeed.Value >= 13)
+        {
+            
+        }
+
+    }
+
     void MyInput()
     {
         if(!IsOwner) return;
@@ -133,7 +146,21 @@ public class PlayerController : NetworkBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
-        animator.SetFloat("speed", Mathf.Abs(verticalInput)); // FOR MOVEMENT ANIMATION
+        if(verticalInput == 1 || verticalInput == 0)
+        {
+            animator.SetFloat("speed", Mathf.Abs(verticalInput)); // FOR MOVEMENT ANIMATION
+        }
+
+        if(Input.GetKey(KeyCode.S))
+        {
+            animator.SetFloat("speed", Mathf.Abs(verticalInput)); // FOR MOVEMENT ANIMATION            
+        }
+
+        if(horizontalInput == 1 || verticalInput == 0)
+        {
+            animator.SetFloat("speed", Mathf.Abs(horizontalInput)); // FOR MOVEMENT ANIMATION
+        }
+     
 
         //when to jump
         if(Input.GetKey(jumpKey) && readyToJump && grounded)
@@ -167,10 +194,10 @@ public class PlayerController : NetworkBehaviour
         }
 
         //in air
-        else if(!grounded)
-        {
-            rb.AddForce(moveDirection.normalized * moveSpeed.Value * 10f * airMultiplier, ForceMode.Force);
-        }
+        // else if(!grounded)
+        // {
+        //     rb.AddForce(moveDirection.normalized * moveSpeed.Value * 10f * airMultiplier, ForceMode.Force);
+        // }
         
 
     }

@@ -27,8 +27,8 @@ public class MeleeDetection : NetworkBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(IsClient)
-        {
+        // if(IsClient)
+        // {
             if(player.tag == "Team1" && other.tag == "Team2" && MeleeAttack.isAttacking)
             {
                 // other.GetComponent<>().SetTrigger("Hit"); --- TRIGGER THE RECOIL ANIMATION FROM TARGET
@@ -65,10 +65,10 @@ public class MeleeDetection : NetworkBehaviour
                 other.GetComponent<Rigidbody>().AddForce(knockbackDirection * knockbackForce, ForceMode.Impulse);
 
 
-                Debug.Log("Team 2 attack");
+                Debug.Log("Dummy attacked");
             }
 
-        }
+        // }
     }
 
 
