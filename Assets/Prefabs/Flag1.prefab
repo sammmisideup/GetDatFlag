@@ -10,9 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4061877206335019694}
   - component: {fileID: 7840544617543142542}
-  - component: {fileID: 8227352757977376350}
-  - component: {fileID: 6947689316872881856}
-  - component: {fileID: 6642713526084913569}
+  - component: {fileID: -4259969637586495699}
+  - component: {fileID: 4040478104004413460}
   m_Layer: 0
   m_Name: Flag1
   m_TagString: Flag
@@ -49,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1330984030
+  GlobalObjectIdHash: 491314220
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -57,7 +56,7 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!114 &8227352757977376350
+--- !u!114 &-4259969637586495699
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -87,21 +86,7 @@ MonoBehaviour:
   InLocalSpace: 0
   Interpolate: 1
   SlerpPosition: 0
---- !u!136 &6947689316872881856
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3526363897093880075}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 2.3
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0.61, y: 1.9, z: 0}
---- !u!114 &6642713526084913569
+--- !u!114 &4040478104004413460
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
