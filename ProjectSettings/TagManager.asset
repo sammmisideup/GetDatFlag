@@ -16,6 +16,9 @@ TagManager:
   - Flag
   - Weapon
   - Trap
+  - Hair1
+  - Hair2
+  - Hair3
   layers:
   - Default
   - TransparentFX

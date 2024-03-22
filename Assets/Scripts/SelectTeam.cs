@@ -7,6 +7,8 @@ using TMPro;
 public class SelectTeam : NetworkBehaviour
 {
     [SerializeField] private GameObject player;
+    
+    [SerializeField] private Renderer playerCloth;
     [SerializeField] private TextMeshProUGUI teamNumber;
     
     private void OnTriggerEnter(Collider col)
@@ -17,29 +19,44 @@ public class SelectTeam : NetworkBehaviour
 
         if(whatHit.CompareTag("SetTeam1"))
         {
-         
+            // playerCloth.material.color = Color.green;
+            playerCloth.material.color = new Color32(145, 226, 27, 255);
+            ChangeClotheColorClientRpc(0);
+
             player.gameObject.tag = "Team1";
             Debug.Log("Player set to Team 1");
 
+
             if(!IsOwner) return;         
             teamNumber.text = "Team 1";
-
-
         }
 
         if(whatHit.CompareTag("SetTeam2"))
         {
-         
+            // playerCloth.material.color = Color.yellow;
+            playerCloth.material.color = new Color32(226, 158, 27, 255);
+            ChangeClotheColorClientRpc(1);
+
             player.gameObject.tag = "Team2";
             Debug.Log("Player set to Team 2");
 
             if(!IsOwner) return;
             teamNumber.text = "Team 2";
-
-
         }        
+    }
 
+    [ClientRpc]
+    private void ChangeClotheColorClientRpc(int value)
+    {
+        if(value == 0)
+        {
+            Debug.Log("Team 1 Player#" + OwnerClientId + " cloth color change 0");    
+        }
 
+        if(value == 1)
+        {
+            Debug.Log("Team 1 Player#" + OwnerClientId + " cloth color change 1");
+        }
 
     }
 

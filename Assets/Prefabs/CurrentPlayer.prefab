@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2133891565914463851}
   - component: {fileID: 5185472270961720358}
   - component: {fileID: 1926162479672432014}
+  - component: {fileID: 6161829843013023892}
   m_Layer: 0
   m_Name: TriggerDetector
   m_TagString: Untagged
@@ -63,6 +64,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 6530204079860664042}
+  playerCloth: {fileID: 971236518803928675}
   teamNumber: {fileID: 5112836769289074008}
 --- !u!114 &2133891565914463851
 MonoBehaviour:
@@ -113,6 +115,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8b4aad52fb55b4cab3a3565b9cb272, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6161829843013023892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 208553041691197630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53f0575aa72c18e4fb9cf3bc14f5831a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hair1: {fileID: 8987803325414397965}
+  hair2: {fileID: 1022684018122904012}
+  hair3: {fileID: 6937706317252766872}
 --- !u!1 &273088158465228916
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,7 +356,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4573257869222835925
 Transform:
   m_ObjectHideFlags: 0
@@ -2445,6 +2462,7 @@ GameObject:
   - component: {fileID: 7903798118485178113}
   - component: {fileID: 7428543958372945431}
   - component: {fileID: -3044325174481880371}
+  - component: {fileID: 539511348868887589}
   m_Layer: 0
   m_Name: CurrentPlayer
   m_TagString: Player
@@ -2485,7 +2503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3410174379
+  GlobalObjectIdHash: 3918822641
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -2630,6 +2648,19 @@ MonoBehaviour:
   scriptToDisableTag: Trap
   scriptToDisable: {fileID: 7903798118485178113}
   disableDuration: 3
+--- !u!114 &539511348868887589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6530204079860664042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b76190010aa17e41af22e54df85c621, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  positionRange: 5
 --- !u!1 &6530204079877329210
 GameObject:
   m_ObjectHideFlags: 0
