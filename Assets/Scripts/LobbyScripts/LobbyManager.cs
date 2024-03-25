@@ -58,13 +58,32 @@ public class LobbyManager : MonoBehaviour
     // Start is called before the first frame update
     async void Start()
     {
-        await UnityServices.InitializeAsync();
+        InitializationOptions hostOptions = new InitializationOptions().SetProfile("host");
+        InitializationOptions clientOptions = new InitializationOptions().SetProfile("client");
+       
+        await UnityServices.InitializeAsync(hostOptions);
+       
         AuthenticationService.Instance.SignedIn += () =>
         {
             playerId = AuthenticationService.Instance.PlayerId;
             Debug.Log("Signed in" + playerId);
         };
+ 
+        if (AuthenticationService.Instance.IsAuthorized)
+        {
+            Debug.Log("Authorized");
+            AuthenticationService.Instance.SignOut();
+            await UnityServices.InitializeAsync(clientOptions);
+        }
         await AuthenticationService.Instance.SignInAnonymouslyAsync();
+
+        // await UnityServices.InitializeAsync();
+        // AuthenticationService.Instance.SignedIn += () =>
+        // {
+        //     playerId = AuthenticationService.Instance.PlayerId;
+        //     Debug.Log("Signed in" + playerId);
+        // };
+        // await AuthenticationService.Instance.SignInAnonymouslyAsync();
 
         createRoomBtn.onClick.AddListener(CreateLobby);
         joinRoomBtn.onClick.AddListener(JoinLobbyWithCode);

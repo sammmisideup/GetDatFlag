@@ -9,6 +9,7 @@ public static class Loader
    public enum Scene {
     Lobby,
     Gameplay,
+    GameOver,
    }
 
    private static Scene targetScene;

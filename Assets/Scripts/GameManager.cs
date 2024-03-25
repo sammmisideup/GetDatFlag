@@ -29,14 +29,19 @@ public class GameManager : NetworkBehaviour
 
     private void GetWinner()
     {
-        if(timer.timeValue.Value == 0 || TeamScore.team1Score.Value == 5 || TeamScore.team2Score.Value == 5)
+        if(timer.timeValue.Value == 0 || TeamScore.team1Score.Value == 1 || TeamScore.team2Score.Value == 1)
         {
-            winnerCanvas.SetActive(true);
+            //winnerCanvas.SetActive(true);
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            Loader.LoadNetwork(Loader.Scene.GameOver);
 
             if(TeamScore.team1Score.Value > TeamScore.team2Score.Value)
             {
                 winnerText.text = "TEAM 1 WINS!";
                 finalScoreText.text = TeamScore.team1Score.Value + " - " + TeamScore.team2Score.Value;
+                PlayerPrefs.SetString("Winningteam", winnerText.text);
+                PlayerPrefs.SetString("WinningScore", finalScoreText.text);
                 Invoke("PauseDelay", 2f);       
 
                 if(IsHost)
@@ -55,6 +60,8 @@ public class GameManager : NetworkBehaviour
             {
                 winnerText.text = "TEAM 2 WINS!";
                 finalScoreText.text = TeamScore.team2Score.Value + " - " + TeamScore.team1Score.Value;
+                PlayerPrefs.SetString("Winningteam", winnerText.text);
+                PlayerPrefs.SetString("WinningScore", finalScoreText.text);
                 Invoke("PauseDelay", 2f);
 
                 if(IsHost)
@@ -73,6 +80,8 @@ public class GameManager : NetworkBehaviour
             {
                 winnerText.text = "DRAW!";
                 finalScoreText.text = TeamScore.team1Score.Value + " - " + TeamScore.team2Score.Value;
+                PlayerPrefs.SetString("Winningteam", winnerText.text);
+                PlayerPrefs.SetString("WinningScore", finalScoreText.text);
                 Invoke("PauseDelay", 2f);
 
                 if(IsHost)
@@ -94,6 +103,7 @@ public class GameManager : NetworkBehaviour
     private void PauseDelay()
     {
         Time.timeScale = 0;
+        NetworkManager.Singleton.Shutdown();
     }
 
     [ClientRpc]
