@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Unity.Netcode;
 using UnityEngine.SceneManagement;
 
 public class GameOverScript : MonoBehaviour
@@ -12,9 +13,12 @@ public class GameOverScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        DestroyNetworkManager.instance.enabled = true;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         WTeam.text = PlayerPrefs.GetString("WinningTeam");
         WScore.text = PlayerPrefs.GetString("WinningScore");
+        NetworkManager.Singleton.Shutdown();
+        DestroyNetworkManager.instance.enabled = true;
     }
 
     // Update is called once per frame

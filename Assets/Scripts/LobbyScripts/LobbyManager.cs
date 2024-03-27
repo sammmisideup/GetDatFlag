@@ -15,7 +15,7 @@ using Unity.Netcode.Transports.UTP;
 using Unity.Networking.Transport.Relay;
 using System.Threading.Tasks;
 
-public class LobbyManager : MonoBehaviour
+public class LobbyManager : NetworkBehaviour
 {
     [Header("Main Menu")]
     [SerializeField] private GameObject mainMenuPanel;
@@ -243,10 +243,15 @@ public class LobbyManager : MonoBehaviour
 
     private void VisualizeRoomDetails()
     {
+        
         for(int i = 0; i < playerInfoContent.transform.childCount; i++)
         {
+            if(playerInfoContent.transform.GetChild(i).gameObject != null)
+            {
             Destroy(playerInfoContent.transform.GetChild(i).gameObject);
+            }
         }
+        
         if (IsinLobby())
         {
             foreach(Player player in currentLobby.Players)
@@ -321,10 +326,16 @@ public class LobbyManager : MonoBehaviour
     private void VisualizeLobbyList(List<Lobby> _publicLobbies)
     {
         // We need to clear previous info
+        
+        
         for(int i = 0; i < lobbiesInfoContent.transform.childCount; i++)
         {
+            if(lobbiesInfoContent.transform.GetChild(i).gameObject != null)
+            {
             Destroy(lobbiesInfoContent.transform.GetChild(i).gameObject);
+            }
         }
+        
         foreach(Lobby _lobby in _publicLobbies)
         {
             GameObject newLobbyInfo = Instantiate(lobbyInfoPrefab,lobbiesInfoContent.transform);

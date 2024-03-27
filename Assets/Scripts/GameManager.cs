@@ -32,8 +32,6 @@ public class GameManager : NetworkBehaviour
         if(timer.timeValue.Value == 0 || TeamScore.team1Score.Value == 1 || TeamScore.team2Score.Value == 1)
         {
             //winnerCanvas.SetActive(true);
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
             Loader.LoadNetwork(Loader.Scene.GameOver);
 
             if(TeamScore.team1Score.Value > TeamScore.team2Score.Value)
@@ -42,7 +40,7 @@ public class GameManager : NetworkBehaviour
                 finalScoreText.text = TeamScore.team1Score.Value + " - " + TeamScore.team2Score.Value;
                 PlayerPrefs.SetString("Winningteam", winnerText.text);
                 PlayerPrefs.SetString("WinningScore", finalScoreText.text);
-                Invoke("PauseDelay", 2f);       
+                Invoke("PauseDelay", 4f);       
 
                 if(IsHost)
                 {
@@ -62,7 +60,7 @@ public class GameManager : NetworkBehaviour
                 finalScoreText.text = TeamScore.team2Score.Value + " - " + TeamScore.team1Score.Value;
                 PlayerPrefs.SetString("Winningteam", winnerText.text);
                 PlayerPrefs.SetString("WinningScore", finalScoreText.text);
-                Invoke("PauseDelay", 2f);
+                Invoke("PauseDelay", 4f);
 
                 if(IsHost)
                 {
@@ -82,7 +80,7 @@ public class GameManager : NetworkBehaviour
                 finalScoreText.text = TeamScore.team1Score.Value + " - " + TeamScore.team2Score.Value;
                 PlayerPrefs.SetString("Winningteam", winnerText.text);
                 PlayerPrefs.SetString("WinningScore", finalScoreText.text);
-                Invoke("PauseDelay", 2f);
+                Invoke("PauseDelay", 4f);
 
                 if(IsHost)
                 {
@@ -103,7 +101,6 @@ public class GameManager : NetworkBehaviour
     private void PauseDelay()
     {
         Time.timeScale = 0;
-        NetworkManager.Singleton.Shutdown();
     }
 
     [ClientRpc]
