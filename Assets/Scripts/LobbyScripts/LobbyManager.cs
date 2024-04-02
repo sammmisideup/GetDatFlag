@@ -185,6 +185,10 @@ public class LobbyManager : NetworkBehaviour
         }
     }
 
+    public void CreateNewLobby (){
+        mainMenuPanel.SetActive(false);
+        createRoomPanel.SetActive(true);
+            }
     private void EnterRoom()
     {
         mainMenuPanel.SetActive(false);
