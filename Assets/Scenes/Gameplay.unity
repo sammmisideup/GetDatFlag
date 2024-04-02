@@ -6157,7 +6157,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &67145538
 AudioListener:
   m_ObjectHideFlags: 0
@@ -17931,6 +17931,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 959e08a479a3b6c419a669e85e7076b8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e0ab931247c62a943b525b557911b376, type: 2}
     - target: {fileID: 919132149155446097, guid: 959e08a479a3b6c419a669e85e7076b8, type: 3}
       propertyPath: m_Name
       value: club (1)
@@ -25878,6 +25882,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 42b0d7381002ca14bbd88514a9378919, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0fcd2a664f656f043961e519acb0aabc, type: 2}
     - target: {fileID: 919132149155446097, guid: 42b0d7381002ca14bbd88514a9378919, type: 3}
       propertyPath: m_Name
       value: dino_egg
@@ -26893,6 +26901,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 3bb87c3b82112984e8ab65a4894abf1b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3a003c9eea5f9484baec79b933d20c58, type: 2}
     - target: {fileID: 919132149155446097, guid: 3bb87c3b82112984e8ab65a4894abf1b, type: 3}
       propertyPath: m_Name
       value: hammer_primitive (1)
@@ -46002,7 +46014,7 @@ GameObject:
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1071517721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81788,7 +81800,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1656792281
 MonoBehaviour:
   m_ObjectHideFlags: 0
