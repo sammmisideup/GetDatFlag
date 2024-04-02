@@ -12,8 +12,6 @@ public class PlayerController : NetworkBehaviour
 
     public NetworkVariable<float> strength = new NetworkVariable<float>(5, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
-    [SerializeField] private TextMeshProUGUI playerNameInput;
-
     public float groundDrag;    
 
     public float jumpForce;
@@ -78,7 +76,6 @@ public class PlayerController : NetworkBehaviour
 
         readyToJump = true;
 
-        playerNameInput.text = PlayerPrefs.GetString("Name");
     }
 
     void FixedUpdate()

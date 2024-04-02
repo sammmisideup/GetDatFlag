@@ -57,6 +57,21 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Menu
+    uniqueID: 2460377771
+    locked: 0
+  - name: Settings
+    uniqueID: 548718663
+    locked: 0
+  - name: Credits
+    uniqueID: 2338075829
+    locked: 0
   - name: Lobby
     uniqueID: 2213110115
+    locked: 0
+  - name: Gameplay
+    uniqueID: 1556008305
+    locked: 0
+  - name: GameOver
+    uniqueID: 328039861
     locked: 0

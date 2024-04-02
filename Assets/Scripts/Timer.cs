@@ -15,6 +15,7 @@ public class Timer : NetworkBehaviour
     public TextMeshProUGUI timerText;
 
     public GameObject[] playerList;
+    public GameObject RoomCodePanel;
 
   void Update()
   {
@@ -68,6 +69,7 @@ public class Timer : NetworkBehaviour
         {
           timeValue.Value = 0;
         }
+      RoomCodePanel.SetActive(false);
     }
 
   }

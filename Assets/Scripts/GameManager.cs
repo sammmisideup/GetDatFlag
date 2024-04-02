@@ -55,7 +55,7 @@ public class GameManager : NetworkBehaviour
 
             }
 
-            if(TeamScore.team1Score.Value < TeamScore.team2Score.Value || TeamScore.team2Score.Value == 5)
+            if(TeamScore.team1Score.Value < TeamScore.team2Score.Value || TeamScore.team2Score.Value == 1)
             {
                 winnerText.text = "TEAM 2 WINS!";
                 finalScoreText.text = TeamScore.team2Score.Value + " - " + TeamScore.team1Score.Value;

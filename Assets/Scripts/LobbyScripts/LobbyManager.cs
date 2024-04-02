@@ -198,6 +198,7 @@ public class LobbyManager : NetworkBehaviour
         roomPanel.SetActive(true);
         roomName.text = currentLobby.Name;
         roomCode.text = currentLobby.LobbyCode;
+        PlayerPrefs.SetString("RoomCodeIn", roomCode.text);
         VisualizeRoomDetails();
     }
 
