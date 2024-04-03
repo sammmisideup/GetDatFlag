@@ -19,6 +19,7 @@ TagManager:
   - Hair1
   - Hair2
   - Hair3
+  - GameManager
   layers:
   - Default
   - TransparentFX

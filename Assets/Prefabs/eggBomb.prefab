@@ -194,4 +194,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 50
   knockbackForce: 40
-  player: {fileID: 6530204079860664042, guid: fa9498633f29e82468b87114f1248c54, type: 3}
+  player: {fileID: 6530204079860664042, guid: 338e81d72a7b51f4dbefe03f10c076e9, type: 3}

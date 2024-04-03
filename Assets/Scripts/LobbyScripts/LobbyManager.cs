@@ -47,6 +47,7 @@ public class LobbyManager : NetworkBehaviour
     [SerializeField] private GameObject joinRoomPanel;
     [SerializeField] private TMP_InputField roomCodeIF;
     [SerializeField] private Button joinRoomBtn;
+    public static int playerLimit;
 
 
 
@@ -149,7 +150,7 @@ public class LobbyManager : NetworkBehaviour
         try
         {
         string lobbyName = roomNameIF.text;
-        int.TryParse(maxPlayersIF.text, out int maxPlayers);
+        // int.TryParse(maxPlayersIF.text, out int maxPlayers);
         CreateLobbyOptions options = new CreateLobbyOptions
         {
             IsPrivate = isPrivateToggle.isOn,
@@ -159,7 +160,7 @@ public class LobbyManager : NetworkBehaviour
                 {"IsGameStarted", new DataObject(DataObject.VisibilityOptions.Member,"false")}
             }
         };
-        currentLobby = await LobbyService.Instance.CreateLobbyAsync(lobbyName, maxPlayers, options);
+        currentLobby = await LobbyService.Instance.CreateLobbyAsync(lobbyName, playerLimit, options);
         
         Allocation allocation = await AllocateRelay();
 
@@ -527,6 +528,19 @@ public class LobbyManager : NetworkBehaviour
         //or load another scene
     }
 
+    public void PlayerLimitTwo()
+    {
+        playerLimit = 2;
+        Debug.Log("Player Limit " + playerLimit);
+        Debug.Log("Gamemode: 1v1");
+    }
+
+    public void PlayerLimitFour()
+    {
+        playerLimit = 4;
+        Debug.Log("Player Limit " + playerLimit);
+        Debug.Log("Gamemode: 2v2");
+    }
 
 
 

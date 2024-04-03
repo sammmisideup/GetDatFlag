@@ -13,6 +13,7 @@ public class GameManager : NetworkBehaviour
     [SerializeField] private TextMeshProUGUI finalScoreText;
     [SerializeField] private GameObject restartButton;
     [SerializeField] private GameObject winnerCanvas;
+    public List<GameObject> playerList;
 
 
     void Start()
@@ -38,7 +39,7 @@ public class GameManager : NetworkBehaviour
             {
                 winnerText.text = "TEAM 1 WINS!";
                 finalScoreText.text = TeamScore.team1Score.Value + " - " + TeamScore.team2Score.Value;
-                PlayerPrefs.SetString("Winningteam", winnerText.text);
+                PlayerPrefs.SetString("WinningTeam", winnerText.text);
                 PlayerPrefs.SetString("WinningScore", finalScoreText.text);
                 Invoke("PauseDelay", 4f);       
 
@@ -58,7 +59,7 @@ public class GameManager : NetworkBehaviour
             {
                 winnerText.text = "TEAM 2 WINS!";
                 finalScoreText.text = TeamScore.team2Score.Value + " - " + TeamScore.team1Score.Value;
-                PlayerPrefs.SetString("Winningteam", winnerText.text);
+                PlayerPrefs.SetString("WinningTeam", winnerText.text);
                 PlayerPrefs.SetString("WinningScore", finalScoreText.text);
                 Invoke("PauseDelay", 4f);
 
@@ -78,7 +79,7 @@ public class GameManager : NetworkBehaviour
             {
                 winnerText.text = "DRAW!";
                 finalScoreText.text = TeamScore.team1Score.Value + " - " + TeamScore.team2Score.Value;
-                PlayerPrefs.SetString("Winningteam", winnerText.text);
+                PlayerPrefs.SetString("WinningTeam", winnerText.text);
                 PlayerPrefs.SetString("WinningScore", finalScoreText.text);
                 Invoke("PauseDelay", 4f);
 
@@ -114,4 +115,5 @@ public class GameManager : NetworkBehaviour
         }
 
     }
+
 }

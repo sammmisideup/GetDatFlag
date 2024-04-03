@@ -7,21 +7,46 @@ using Unity.Netcode;
 
 public class Timer : NetworkBehaviour
 {
-    public NetworkVariable<float> timeValue = new NetworkVariable<float>(320, NetworkVariableReadPermission.Everyone);
+    public NetworkVariable<float> timeValue = new NetworkVariable<float>(330, NetworkVariableReadPermission.Everyone);
     private NetworkVariable<int> playerCount = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone);
+    public static NetworkVariable<float> timeValuePub = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone);
+    public NetworkVariable<float> timeValuePubMakeSure = new NetworkVariable<float>(330, NetworkVariableReadPermission.Everyone);
+
     public TextMeshProUGUI timerText;
+
+    public GameObject[] playerList;
 
   void Update()
   {
     if(IsServer)
     {
       playerCount.Value = NetworkManager.Singleton.ConnectedClients.Count;
+      timeValuePub.Value = timeValue.Value;
+      timeValuePubMakeSure.Value = timeValuePub.Value;
     }
 
 
-    if(playerCount.Value >= 2)
+
+    playerList = GameObject.FindGameObjectsWithTag("Team1");
+    playerList = GameObject.FindGameObjectsWithTag("Team2");
+
+
+    if(LobbyManager.playerLimit == 2)
     {
-      UpdateTime();
+      if(playerCount.Value == 2)
+      {
+        UpdateTime();
+        // StartGameNotifClientRpc(0);
+      }
+    }
+
+    if(LobbyManager.playerLimit == 4)
+    {
+      if(playerCount.Value == 4)
+      {
+        UpdateTime();
+        // StartGameNotifClientRpc(1);
+      }
     }
 
     DisplayTime(timeValue.Value);
@@ -69,5 +94,19 @@ public class Timer : NetworkBehaviour
     }
 
   }
+
+  // [ClientRpc]
+  // private void StartGameNotifClientRpc(int value)
+  // {
+  //   if(value == 0)
+  //   {
+  //     Debug.Log("1v1 is Starting!");    
+  //   }
+
+  //   if(value == 1)
+  //   {
+  //     Debug.Log("2v2 is Starting!");
+  //   }    
+  // }
 
 }
