@@ -2601,8 +2601,8 @@ MonoBehaviour:
     m_InternalValue: 8
   strength:
     m_InternalValue: 5
-  groundDrag: 5
-  jumpForce: 10.5
+  groundDrag: 8
+  jumpForce: 25
   jumpCooldown: 1.25
   airMultiplier: 0.2
   jumpKey: 32
@@ -2920,9 +2920,9 @@ MonoBehaviour:
   m_XAxis:
     Value: -24.10989
     m_SpeedMode: 0
-    m_MaxSpeed: 450
-    m_AccelTime: 0.1
-    m_DecelTime: 0.1
+    m_MaxSpeed: 230
+    m_AccelTime: 0.2
+    m_DecelTime: 0.2
     m_InputAxisName: Mouse X
     m_InputAxisValue: 0
     m_InvertInput: 0
@@ -3010,9 +3010,9 @@ MonoBehaviour:
   SyncScaleX: 1
   SyncScaleY: 1
   SyncScaleZ: 1
-  PositionThreshold: 0.001
+  PositionThreshold: 0.005
   RotAngleThreshold: 0.01
-  ScaleThreshold: 0.01
+  ScaleThreshold: 0.1
   UseQuaternionSynchronization: 0
   UseQuaternionCompression: 0
   UseHalfFloatPrecision: 0
@@ -3043,7 +3043,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6530204080565256375}
-  m_LocalRotation: {x: 0.13564256, y: -0.20683096, z: 0.028967703, w: 0.9684952}
+  m_LocalRotation: {x: 0.13564256, y: -0.20683096, z: 0.028967703, w: 0.96849525}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4057,21 +4057,21 @@ MonoBehaviour:
     Layer: 0
     OriginatingState: -1889834403
     DestinationState: 1421198885
-    TransitionDuration: 0.25
+    TransitionDuration: 0.06457293
     TriggerNameHash: 973584577
     TransitionIndex: 0
   - IsCrossFadeExit: 0
     Layer: 0
     OriginatingState: -187901602
     DestinationState: 1421198885
-    TransitionDuration: 0.25
+    TransitionDuration: 0
     TriggerNameHash: 973584577
     TransitionIndex: 1
   - IsCrossFadeExit: 0
     Layer: 0
     OriginatingState: -554785507
     DestinationState: 1421198885
-    TransitionDuration: 0.25
+    TransitionDuration: 0.09623116
     TriggerNameHash: 973584577
     TransitionIndex: 1
   m_Animator: {fileID: 4148036449910558886}

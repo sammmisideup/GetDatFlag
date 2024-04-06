@@ -81,7 +81,7 @@ public class PlayerController : NetworkBehaviour
     void FixedUpdate()
     {
         if(!IsOwner) return;
-
+        
         MovePlayer();
     }
 
@@ -125,6 +125,9 @@ public class PlayerController : NetworkBehaviour
 
     }
 
+
+    
+
     void PlayerRun()
     {
         if(!IsOwner) return;
@@ -146,16 +149,19 @@ public class PlayerController : NetworkBehaviour
         if(verticalInput == 1 || verticalInput == 0)
         {
             animator.SetFloat("speed", Mathf.Abs(verticalInput)); // FOR MOVEMENT ANIMATION
+            animator.SetFloat("speed2", moveSpeed.Value);
         }
 
         if(Input.GetKey(KeyCode.S))
         {
-            animator.SetFloat("speed", Mathf.Abs(verticalInput)); // FOR MOVEMENT ANIMATION            
+            animator.SetFloat("speed", Mathf.Abs(verticalInput)); // FOR MOVEMENT ANIMATION
+            animator.SetFloat("speed2", moveSpeed.Value);
         }
 
         if(horizontalInput == 1 || verticalInput == 0)
         {
             animator.SetFloat("speed", Mathf.Abs(horizontalInput)); // FOR MOVEMENT ANIMATION
+            animator.SetFloat("speed2", moveSpeed.Value);
         }
      
 

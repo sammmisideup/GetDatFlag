@@ -19,6 +19,7 @@ public class LobbyManager : NetworkBehaviour
 {
     [Header("Main Menu")]
     [SerializeField] private GameObject mainMenuPanel;
+    [SerializeField] private GameObject mainMenuButtonPanel;
     [SerializeField] private Button getLobbiesListBtn;
     [SerializeField] private GameObject lobbyInfoPrefab;
     [SerializeField] private GameObject lobbiesInfoContent;
@@ -27,6 +28,7 @@ public class LobbyManager : NetworkBehaviour
     [Space(10)]
     [Header("Create Room Panel")]
     [SerializeField] private GameObject createRoomPanel;
+    [SerializeField] private GameObject createRoomButtonPanel;
     [SerializeField] private TMP_InputField roomNameIF;
     [SerializeField] private TMP_InputField maxPlayersIF;
     [SerializeField] private Button createRoomBtn;
@@ -35,6 +37,8 @@ public class LobbyManager : NetworkBehaviour
     [Space(10)]
     [Header("Room Panel")]
     [SerializeField] private GameObject roomPanel;
+    [SerializeField] private GameObject loadingRoomPanel;
+    [SerializeField] private GameObject roomButtonPanel;
     [SerializeField] private TextMeshProUGUI roomName;
     [SerializeField] private TextMeshProUGUI roomCode;
     [SerializeField] private GameObject playerInfoContent;
@@ -45,6 +49,7 @@ public class LobbyManager : NetworkBehaviour
     [Space(10)]
     [Header("Join Room With Code")]
     [SerializeField] private GameObject joinRoomPanel;
+    [SerializeField] private GameObject joinRoomButtonPanel;
     [SerializeField] private TMP_InputField roomCodeIF;
     [SerializeField] private Button joinRoomBtn;
     public static int playerLimit;
@@ -185,19 +190,47 @@ public class LobbyManager : NetworkBehaviour
             Debug.Log(e);
         }
     }
-
+    public void ToMainMenu()
+    {
+        SceneManager.LoadSceneAsync("MainMenu");
+    }
     public void CreateNewLobby (){
+    mainMenuButtonPanel.SetActive(false);
+    createRoomPanel.SetActive(true);
+    }
+    public void CancelCreateNewLobby()
+    {
+        mainMenuButtonPanel.SetActive(true);
+        createRoomPanel.SetActive(false);
+    }
+
+    public void JoinLobby()
+    {
+        mainMenuButtonPanel.SetActive(true);
         mainMenuPanel.SetActive(false);
-        createRoomPanel.SetActive(true);
-            }
+        joinRoomPanel.SetActive(true);
+    }
+    public void CancelJoinPublicLobby()
+    {
+        roomPanel.SetActive(false);
+        mainMenuPanel.SetActive(true);
+    }
+
+    public void CancelJoinPrivLobby()
+    {
+        roomButtonPanel.SetActive(true);
+        joinRoomPanel.SetActive(false);
+        //EnterRoom();
+
+    }
     private void EnterRoom()
     {
         mainMenuPanel.SetActive(false);
         createRoomPanel.SetActive(false);
         joinRoomPanel.SetActive(false);
-        roomPanel.SetActive(true);
-        roomName.text = currentLobby.Name;
-        roomCode.text = currentLobby.LobbyCode;
+        loadingRoomPanel.SetActive(true);
+        //roomName.text = currentLobby.Name;
+        //roomCode.text = currentLobby.LobbyCode;
         PlayerPrefs.SetString("RoomCodeIn", roomCode.text);
         VisualizeRoomDetails();
     }

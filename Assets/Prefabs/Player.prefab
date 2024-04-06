@@ -61,10 +61,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 035e9c9ef989f904c9bc63e7b465b7e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buffedMovespeed:
-    m_InternalValue: 0
-  buffedKnockback:
-    m_InternalValue: 0
+  speedCount: {fileID: 0}
+  knockbackStrength: {fileID: 0}
+  ammo: {fileID: 0}
+  playerController: {fileID: 0}
+  hand2: {fileID: 0}
 --- !u!114 &2584149064997624813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,6 +79,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 6530204079860664042}
+  playerCloth: {fileID: 0}
+  teamNumber: {fileID: 0}
 --- !u!114 &2133891565914463851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,6 +98,7 @@ MonoBehaviour:
   buffedKnockback:
     m_InternalValue: 5
   playerController: {fileID: 6530204079860664042}
+  hand2: {fileID: 0}
 --- !u!1 &273088158465228916
 GameObject:
   m_ObjectHideFlags: 0
@@ -659,6 +663,7 @@ MonoBehaviour:
   orientation: {fileID: 6530204079740987858}
   fl: {fileID: 6530204079987401566}
   listener: {fileID: 6530204080619866170}
+  animator: {fileID: 0}
 --- !u!114 &7428543958372945431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1099,6 +1104,7 @@ GameObject:
   - component: {fileID: 6530204080619866173}
   - component: {fileID: 9046637232825147198}
   - component: {fileID: 3711299664588105543}
+  - component: {fileID: 2224687544892071611}
   m_Layer: 0
   m_Name: PlayerCam
   m_TagString: Untagged
@@ -1253,6 +1259,39 @@ MonoBehaviour:
   InLocalSpace: 0
   Interpolate: 1
   SlerpPosition: 0
+--- !u!114 &2224687544892071611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6530204080619866175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1 &6530204080753906386
 GameObject:
   m_ObjectHideFlags: 3
@@ -1277,7 +1316,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6530204080753906386}
-  m_LocalRotation: {x: 0.09048074, y: -0.20795381, z: 0.01932298, w: 0.9737531}
+  m_LocalRotation: {x: 0.09048074, y: -0.20795384, z: 0.019322986, w: 0.9737531}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1818,7 +1857,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4b5295af84df0f4fbd0ba184083419c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meleeWeapon: {fileID: 7642360530358393286}
   canAttack: 1
   attackCooldown: 1
   isAttacking: 0

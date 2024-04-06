@@ -119,8 +119,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd642e8681c723b4b8cd632e78c44238, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockbackHeight: 0.5
-  knockbackDistance: 7
+  knockbackHeight: 0.6
+  knockbackDistance: 10
   knockbackForce: 3
 --- !u!65 &7407437796679068413
 BoxCollider:
