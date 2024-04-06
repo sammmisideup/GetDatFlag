@@ -42,6 +42,9 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] private CinemachineFreeLook fl;
     [SerializeField] private AudioListener listener;
 
+    // Adjustan ng bounce force sa character
+    public float bounceForce;
+
     [SerializeField] private Animator animator; // FOR 3D PLAYER
 
 
@@ -241,7 +244,84 @@ public class PlayerController : NetworkBehaviour
         readyToJump = true;
     }
 
+//collisions for trap and gameplay logic
+    void OnCollisionEnter(Collision collision)
+    {
+        if (!IsOwner) return;
 
+        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Team1") || collision.gameObject.CompareTag("Team2"))
+        {
+            BounceBack();
+        }
+        else if (collision.gameObject.CompareTag("SlowTrap"))
+        {
+            SlowPlayer();
+        }
+        else if (collision.gameObject.CompareTag("StickTrap"))
+        {
+            StickToTrap(); 
+        }
+    }
+
+
+    void BounceBack()
+    {
+        if (!IsOwner) return;
+        //bounce logic
+        Vector3 bounceDirection = -rb.velocity.normalized;
+
+        rb.AddForce(bounceDirection * bounceForce, ForceMode.Impulse);
+
+        Debug.Log("Player Bounced Back!");
+
+    }
+
+    void SlowPlayer()
+{
+    if (!IsOwner) return;
+
+    // reduce player speeddd
+    moveSpeed.Value *= 0.5f;
+    Debug.Log("Player Slowed Down!");
+
+   
+    StartCoroutine(RestorePlayerSpeed());
+}
+
+IEnumerator RestorePlayerSpeed()
+{
+    yield return new WaitForSeconds(3f);
+
+    // restore player speedd
+    moveSpeed.Value *= 2; //timer
+    Debug.Log("Player Speed Restored!");
+}
+
+
+
+    void StickToTrap()
+{
+    if (!IsOwner) return;
+    Debug.Log("Player Stuck to Trap!");
+
+    // freeze player after collision
+    rb.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
+
+    StartCoroutine(UnstickFromTrap());
+}
+
+IEnumerator UnstickFromTrap()
+{
+    yield return new WaitForSeconds(2f);
+
+    // unfreeze si player
+    rb.constraints = RigidbodyConstraints.None;
+
+    // ikikeep yung rotation constraint ni player
+    rb.freezeRotation = true;
+
+    Debug.Log("Player Unstuck from Trap!");
+}
 
 
 }
