@@ -13,6 +13,11 @@ public class GameManager : NetworkBehaviour
     [SerializeField] private TextMeshProUGUI finalScoreText;
     [SerializeField] private GameObject restartButton;
     [SerializeField] private GameObject winnerCanvas;
+    [SerializeField] private GameObject flagSpawner;
+    [SerializeField] private GameObject powerupSpawner;
+    [SerializeField] private GameObject teamSelection;
+    [SerializeField] private GameObject hairSelection;
+
     public List<GameObject> playerList;
 
 
@@ -26,6 +31,8 @@ public class GameManager : NetworkBehaviour
     void Update()
     {
         GetWinner();
+        StartSpawners();
+        StartSelections();
     }
 
     private void GetWinner()
@@ -114,6 +121,32 @@ public class GameManager : NetworkBehaviour
             Debug.Log("Restart Game");
         }
 
+    }
+
+    private void StartSpawners()
+    {
+        if(timer.timeValue.Value < 300 && timer.timeValue.Value > 299.95)
+        {
+            flagSpawner.GetComponent<FlagSpawner>().enabled = true;                 // turn off the scripts from the spawners and set time to spawn for flag spawner to 3 seconds
+            powerupSpawner.GetComponent<PowerupSpawner>().enabled = true;
+
+
+
+            Debug.Log("Spawners started");
+        }
+    }
+
+    private void StartSelections()
+    {
+        if(timer.timeValue.Value < 345 && timer.timeValue.Value > 299.95)
+        {
+            hairSelection.SetActive(true);
+            teamSelection.SetActive(true);
+
+
+
+            Debug.Log("Spawners started");
+        }
     }
 
 }

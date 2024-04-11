@@ -281,7 +281,7 @@ public class PlayerController : NetworkBehaviour
     if (!IsOwner) return;
 
     // reduce player speeddd
-    moveSpeed.Value *= 0.5f;
+    moveSpeed.Value = 4f;
     Debug.Log("Player Slowed Down!");
 
    
@@ -293,7 +293,7 @@ IEnumerator RestorePlayerSpeed()
     yield return new WaitForSeconds(3f);
 
     // restore player speedd
-    moveSpeed.Value *= 2; //timer
+    moveSpeed.Value = 8f; //timer
     Debug.Log("Player Speed Restored!");
 }
 

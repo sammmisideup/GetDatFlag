@@ -7,10 +7,10 @@ using Unity.Netcode;
 
 public class Timer : NetworkBehaviour
 {
-    public NetworkVariable<float> timeValue = new NetworkVariable<float>(330, NetworkVariableReadPermission.Everyone);
+    public NetworkVariable<float> timeValue = new NetworkVariable<float>(345, NetworkVariableReadPermission.Everyone);
     private NetworkVariable<int> playerCount = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone);
     public static NetworkVariable<float> timeValuePub = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone);
-    public NetworkVariable<float> timeValuePubMakeSure = new NetworkVariable<float>(330, NetworkVariableReadPermission.Everyone);
+    public NetworkVariable<float> timeValuePubMakeSure = new NetworkVariable<float>(345, NetworkVariableReadPermission.Everyone);
 
     public TextMeshProUGUI timerText;
 

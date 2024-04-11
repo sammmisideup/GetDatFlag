@@ -20,7 +20,7 @@ public class PowerupDestroy : NetworkBehaviour
     {
         GameObject whatHit = col.gameObject; 
 
-        if(whatHit.CompareTag("Player"))
+        if(whatHit.CompareTag("Team1") || whatHit.CompareTag("Team2") || whatHit.CompareTag("Player"))
         {
             DestroyPowerupServerRpc();
         }

@@ -24,7 +24,7 @@ public class BulletScript : NetworkBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-        if(player.tag == "Team1" && other.tag == "Team2")
+        if(other.tag == "Team2")
         {
             // other.GetComponent<>().SetTrigger("Hit"); --- TRIGGER THE RECOIL ANIMATION FROM TARGET
 
@@ -38,7 +38,7 @@ public class BulletScript : NetworkBehaviour
             Debug.Log("Team1 Player " + OwnerClientId+  " EggBomb hit " + other.tag);
         }
 
-        if(player.tag == "Team2" && other.tag == "Team1")
+        if(other.tag == "Team1")
         {
             // other.GetComponent<>().SetTrigger("Hit"); --- TRIGGER THE RECOIL ANIMATION FROM TARGET
 
@@ -62,12 +62,6 @@ public class BulletScript : NetworkBehaviour
             Destroy(this);
 
             Debug.Log("Player" + OwnerClientId+  " EggBomb hit " + other.tag);
-        }
-
-        else
-        {
-            Destroy(this);
-            Debug.Log("Player" + OwnerClientId+  " EggBomb hit something");
         }
     }
 

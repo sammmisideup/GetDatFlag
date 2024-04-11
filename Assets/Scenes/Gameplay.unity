@@ -6141,7 +6141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &67145538
 AudioListener:
   m_ObjectHideFlags: 0
@@ -8435,7 +8435,7 @@ Transform:
   - {fileID: 1947386587}
   - {fileID: 1457666383}
   m_Father: {fileID: 0}
-  m_RootOrder: 32
+  m_RootOrder: 33
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &160915546
 MonoBehaviour:
@@ -8444,7 +8444,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 160915544}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e91e0323ce41f8468655a5b2deeed48, type: 3}
   m_Name: 
@@ -36725,7 +36725,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &821996875
 Transform:
   m_ObjectHideFlags: 0
@@ -36734,7 +36734,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 821996874}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -117.57, y: 12.4, z: -19.63}
+  m_LocalPosition: {x: -114.82, y: 12.4, z: -19.63}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -37385,7 +37385,7 @@ RectTransform:
   m_Children:
   - {fileID: 1188017234}
   m_Father: {fileID: 0}
-  m_RootOrder: 35
+  m_RootOrder: 36
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -46648,7 +46648,7 @@ GameObject:
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1071517721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79867,7 +79867,7 @@ RectTransform:
   - {fileID: 510880901}
   - {fileID: 951073515}
   m_Father: {fileID: 0}
-  m_RootOrder: 36
+  m_RootOrder: 35
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -79887,9 +79887,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeValue:
-    m_InternalValue: 330
+    m_InternalValue: 345
   timeValuePubMakeSure:
-    m_InternalValue: 330
+    m_InternalValue: 345
   timerText: {fileID: 510880899}
   playerList: []
   RoomCodePanel: {fileID: 850975629}
@@ -82826,7 +82826,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1656792281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91120,7 +91120,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1781809077}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 481b4691639f02646b75afc385cdff17, type: 3}
   m_Name: 
@@ -91133,7 +91133,7 @@ MonoBehaviour:
   - {fileID: 1504662540}
   - {fileID: 1993890565}
   - {fileID: 293641134}
-  timeToFlagSpawn: 10
+  timeToFlagSpawn: 3
 --- !u!4 &1781809080
 Transform:
   m_ObjectHideFlags: 0
@@ -91152,7 +91152,7 @@ Transform:
   - {fileID: 1993890565}
   - {fileID: 293641134}
   m_Father: {fileID: 0}
-  m_RootOrder: 33
+  m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1784841201 stripped
 GameObject:
@@ -92518,7 +92518,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1824377709
 Transform:
   m_ObjectHideFlags: 0
@@ -92527,7 +92527,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1824377708}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -115.82, y: 12.4, z: -16.88}
+  m_LocalPosition: {x: -113.07, y: 12.4, z: -16.88}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -105302,6 +105302,10 @@ MonoBehaviour:
   finalScoreText: {fileID: 1536188607}
   restartButton: {fileID: 1982360273}
   winnerCanvas: {fileID: 1581059966}
+  flagSpawner: {fileID: 1781809077}
+  powerupSpawner: {fileID: 160915544}
+  teamSelection: {fileID: 821996874}
+  hairSelection: {fileID: 1824377708}
   playerList: []
 --- !u!1 &1975083157 stripped
 GameObject:

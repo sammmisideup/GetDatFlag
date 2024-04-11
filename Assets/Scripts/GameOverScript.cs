@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using Unity.Netcode;
 using UnityEngine.SceneManagement;
 
-public class GameOverScript : MonoBehaviour
+public class GameOverScript : NetworkBehaviour
 {
     public TextMeshProUGUI WTeam;
     public TextMeshProUGUI WScore;

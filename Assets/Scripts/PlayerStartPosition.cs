@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class PlayerStartPosition : NetworkBehaviour
 {
-    public NetworkVariable<bool> isReady = new NetworkVariable<bool>(true, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<bool> canTP = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     void Update()
     {
 
         if(IsOwner && Timer.timeValuePub.Value < 300 && Timer.timeValuePub.Value > 299.95) // SA WAKAS GUMANA NA
         {
-            isReady.Value = true;
+            canTP.Value = true;
             transform.position = new Vector3(-58f, -2.5f, Random.Range(-20f, -30f));
             transform.rotation = new Quaternion(0f, 0f, 0f, 0f);            
             Debug.Log("Starting Position");
@@ -32,8 +32,12 @@ public class PlayerStartPosition : NetworkBehaviour
 
         if(IsOwner && Input.GetKeyDown(KeyCode.R))       // MANUAL TELEPORT or UNSTUCK BUTTON
         {
-            transform.position = new Vector3(-58f, -2.5f, Random.Range(-20f, -30f));
-            transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
+            if(canTP.Value == true)
+            {
+                transform.position = new Vector3(-58f, -2.5f, Random.Range(-20f, -30f));
+                transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
+            }
+
         }
 
 
