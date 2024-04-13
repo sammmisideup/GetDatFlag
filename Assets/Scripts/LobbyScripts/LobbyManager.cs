@@ -202,6 +202,7 @@ public class LobbyManager : NetworkBehaviour
     {
         mainMenuButtonPanel.SetActive(true);
         createRoomPanel.SetActive(false);
+ 
     }
 
     public void JoinLobby()
@@ -210,6 +211,7 @@ public class LobbyManager : NetworkBehaviour
         mainMenuPanel.SetActive(false);
         joinRoomPanel.SetActive(true);
     }
+    public AudioSource audio;
     public void CancelJoinPublicLobby()
     {
         roomPanel.SetActive(false);
