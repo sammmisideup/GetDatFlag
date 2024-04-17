@@ -253,7 +253,7 @@ public class PlayerController : NetworkBehaviour
         {
             BounceBack();
         }
-        else if (collision.gameObject.CompareTag("SlowTrap"))
+        else if (collision.gameObject.CompareTag("SlowTrap")|| collision.gameObject.CompareTag("EggBomb"))
         {
             SlowPlayer();
         }

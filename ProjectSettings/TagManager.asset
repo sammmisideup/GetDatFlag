@@ -23,6 +23,8 @@ TagManager:
   - StickTrap
   - SlowTrap
   - GameSFX
+  - EggBomb
+  - Egg
   layers:
   - Default
   - TransparentFX
