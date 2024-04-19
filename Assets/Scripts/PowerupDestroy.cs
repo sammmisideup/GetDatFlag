@@ -31,6 +31,7 @@ public class PowerupDestroy : NetworkBehaviour
     private void DestroyPowerupServerRpc()
     {
         Destroy(pickupClone);
+        pickupClone.GetComponent<NetworkObject>().Despawn();
         Debug.Log("Powerup destroyed");        
     }
 

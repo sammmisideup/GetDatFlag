@@ -33,16 +33,24 @@ public class MeleeAttack : NetworkBehaviour
     {
         // if(IsClient)
         // {
-            isAttacking = true;
-            canAttack = false;
+            WeaponAttackClientRpc();
             // Animator anim = meleeWeapon.GetComponent<Animator>();
             // anim.SetTrigger("Attack");
 
             // AudioSource ac = GetComponent<AudioSource>(); -- FOR THE AUDIO SOURCE
             // ac.PlayOneShot(attackSFX); -- PLAYING THE AUDIO SOURCE
-
-            StartCoroutine(ResetAttackCooldown());             
+           
         // }
+    }
+
+    [ClientRpc]
+    private void WeaponAttackClientRpc()
+    {
+        isAttacking = true;
+        canAttack = false;
+
+        
+        StartCoroutine(ResetAttackCooldown());  
     }
 
     IEnumerator ResetAttackCooldown()

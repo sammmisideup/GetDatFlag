@@ -14,6 +14,7 @@ public class GameManager : NetworkBehaviour
     [SerializeField] private GameObject restartButton;
     [SerializeField] private GameObject winnerCanvas;
     [SerializeField] private GameObject flagSpawner;
+    [SerializeField] private GameObject weaponSpawner;
     [SerializeField] private GameObject powerupSpawner;
     [SerializeField] private GameObject teamSelection;
     [SerializeField] private GameObject hairSelection;
@@ -25,7 +26,6 @@ public class GameManager : NetworkBehaviour
     {
         winnerText.text = "";
         finalScoreText.text = "";
-        restartButton.SetActive(false);
     }
     
     void Update()
@@ -37,7 +37,7 @@ public class GameManager : NetworkBehaviour
 
     private void GetWinner()
     {
-        if(timer.timeValue.Value == 0 || TeamScore.team1Score.Value == 1 || TeamScore.team2Score.Value == 1)
+        if(timer.timeValue.Value == 0 || TeamScore.team1Score.Value == 3 || TeamScore.team2Score.Value == 3)
         {
             //winnerCanvas.SetActive(true);
             Loader.LoadNetwork(Loader.Scene.GameOver);
@@ -49,37 +49,15 @@ public class GameManager : NetworkBehaviour
                 PlayerPrefs.SetString("WinningTeam", winnerText.text);
                 PlayerPrefs.SetString("WinningScore", finalScoreText.text);
                 Invoke("PauseDelay", 4f);       
-
-                if(IsHost)
-                {
-                    restartButton.SetActive(true);
-                }
-
-                else
-                {
-                    return;
-                }
-
             }
 
-            if(TeamScore.team1Score.Value < TeamScore.team2Score.Value || TeamScore.team2Score.Value == 1)
+            if(TeamScore.team1Score.Value < TeamScore.team2Score.Value)
             {
                 winnerText.text = "TEAM 2 WINS!";
                 finalScoreText.text = TeamScore.team2Score.Value + " - " + TeamScore.team1Score.Value;
                 PlayerPrefs.SetString("WinningTeam", winnerText.text);
                 PlayerPrefs.SetString("WinningScore", finalScoreText.text);
                 Invoke("PauseDelay", 4f);
-
-                if(IsHost)
-                {
-                    restartButton.SetActive(true);
-                }
-
-                else
-                {
-                    return;
-                }          
-
             }            
 
             if(TeamScore.team1Score.Value == TeamScore.team2Score.Value)
@@ -89,17 +67,6 @@ public class GameManager : NetworkBehaviour
                 PlayerPrefs.SetString("WinningTeam", winnerText.text);
                 PlayerPrefs.SetString("WinningScore", finalScoreText.text);
                 Invoke("PauseDelay", 4f);
-
-                if(IsHost)
-                {
-                    restartButton.SetActive(true);
-                }
-
-                else
-                {
-                    return;
-                }          
-
             } 
 
 
@@ -129,10 +96,7 @@ public class GameManager : NetworkBehaviour
         {
             flagSpawner.GetComponent<FlagSpawner>().enabled = true;                 // turn off the scripts from the spawners and set time to spawn for flag spawner to 3 seconds
             powerupSpawner.GetComponent<PowerupSpawner>().enabled = true;
-
-
-
-            Debug.Log("Spawners started");
+            weaponSpawner.GetComponent<PowerupSpawner>().enabled = true;
         }
     }
 
@@ -142,10 +106,6 @@ public class GameManager : NetworkBehaviour
         {
             hairSelection.SetActive(true);
             teamSelection.SetActive(true);
-
-
-
-            Debug.Log("Spawners started");
         }
     }
 

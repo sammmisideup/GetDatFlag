@@ -15,6 +15,8 @@ public class PowerupSpawner : NetworkBehaviour
     public float timeToSpawn;
     private float currentTimeToSpawn;
 
+    [SerializeField] private float expirationTime = 8.75f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -49,8 +51,8 @@ public class PowerupSpawner : NetworkBehaviour
         int randSpawnPoint = Random.Range(0, spawnPoints.Length);
 
         pickupClone = Instantiate(pickups[randPickup], spawnPoints[randSpawnPoint].position, transform.rotation);
-        pickupClone.GetComponent<NetworkObject>().Spawn(true);
-        Destroy(pickupClone, 8.75f);
+        pickupClone.GetComponent<NetworkObject>().Spawn();
+        Destroy(pickupClone, expirationTime);
         
     }
 }

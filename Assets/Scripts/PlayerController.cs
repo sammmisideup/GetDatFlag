@@ -277,7 +277,7 @@ public class PlayerController : NetworkBehaviour
     }
 
     void SlowPlayer()
-{
+    {
     if (!IsOwner) return;
 
     // reduce player speeddd
@@ -286,21 +286,21 @@ public class PlayerController : NetworkBehaviour
 
    
     StartCoroutine(RestorePlayerSpeed());
-}
+    }
 
-IEnumerator RestorePlayerSpeed()
-{
-    yield return new WaitForSeconds(3f);
+    IEnumerator RestorePlayerSpeed()
+    {
+        yield return new WaitForSeconds(3f);
 
-    // restore player speedd
-    moveSpeed.Value = 8f; //timer
-    Debug.Log("Player Speed Restored!");
-}
+        // restore player speedd
+        moveSpeed.Value = 8f; //timer
+        Debug.Log("Player Speed Restored!");
+    }
 
 
 
     void StickToTrap()
-{
+    {
     if (!IsOwner) return;
     Debug.Log("Player Stuck to Trap!");
 
@@ -308,20 +308,35 @@ IEnumerator RestorePlayerSpeed()
     rb.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
 
     StartCoroutine(UnstickFromTrap());
-}
+    }  
 
-IEnumerator UnstickFromTrap()
-{
-    yield return new WaitForSeconds(2f);
+    IEnumerator UnstickFromTrap()
+    {
+        yield return new WaitForSeconds(2f);
 
-    // unfreeze si player
-    rb.constraints = RigidbodyConstraints.None;
+        // unfreeze si player
+        rb.constraints = RigidbodyConstraints.None;
 
-    // ikikeep yung rotation constraint ni player
-    rb.freezeRotation = true;
+        // ikikeep yung rotation constraint ni player
+        rb.freezeRotation = true;
 
-    Debug.Log("Player Unstuck from Trap!");
-}
+        Debug.Log("Player Unstuck from Trap!");
+    }
 
+    public void StunPlayer()
+    {
+        StartCoroutine(PlayerStun());
+    }
+    IEnumerator PlayerStun()
+    {
+        this.enabled = false;
+        Debug.Log("Player " + OwnerClientId + " Stunned!");
+
+        yield return new WaitForSeconds(3f);
+
+        this.enabled = true;
+    
+        Debug.Log("Player " + OwnerClientId + " Unstunned!");
+    }
 
 }
