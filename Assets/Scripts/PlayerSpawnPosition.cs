@@ -6,15 +6,12 @@ using Unity.Netcode;
 public class PlayerSpawnPosition : NetworkBehaviour
 {
     [SerializeField] private float positionRange;
-    [SerializeField] private GameObject gameManager;
     [SerializeField] private GameObject player;
     // [SerializeField] private GameObject timerObj;
     // [SerializeField] private Timer timer;
 
     public override void OnNetworkSpawn()
     {
-        StartCoroutine(CheckManager());
-        // StartCoroutine(CheckTimer());
         SpawnPositionServerRpc();
     }
 
@@ -30,16 +27,8 @@ public class PlayerSpawnPosition : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     private void SpawnPositionServerRpc()
     {
-        transform.position = new Vector3(Random.Range(-72f, -90f), Random.Range(16f, 16f), Random.Range(-6f, -28f));
-        transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
-    }
-
-    IEnumerator CheckManager()
-    {
-        yield return new WaitForSeconds(3f);
-        gameManager = GameObject.Find("GameManager");
-        gameManager.GetComponent<GameManager>().playerList.Add(player);        
-        
+        player.transform.position = new Vector3(Random.Range(-72f, -90f), Random.Range(16f, 16f), Random.Range(-6f, -28f));
+        player.transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
     }
 
     // IEnumerator CheckTimer()

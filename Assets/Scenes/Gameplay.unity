@@ -8536,6 +8536,7 @@ MonoBehaviour:
   pickups:
   - {fileID: 626087161250913780, guid: 8d4eb50fdb4d7f3408e6aae9b3af3516, type: 3}
   - {fileID: 1468423120014556049, guid: 1ac008529aca29d449aae5697de493fb, type: 3}
+  - {fileID: 6102842654631479114, guid: 9e2a190c7878a3a469aefebf6e93156a, type: 3}
   timeToSpawn: 10
   expirationTime: 8.75
 --- !u!114 &160915547

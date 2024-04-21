@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1865690998
+  GlobalObjectIdHash: 2569939641
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -192,5 +192,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 726b32a47631c604dac8ec465bc15831, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
-  player: {fileID: 6530204079860664042, guid: 338e81d72a7b51f4dbefe03f10c076e9, type: 3}
+  speed: 30

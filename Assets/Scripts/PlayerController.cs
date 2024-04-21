@@ -249,11 +249,11 @@ public class PlayerController : NetworkBehaviour
     {
         if (!IsOwner) return;
 
-        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Team1") || collision.gameObject.CompareTag("Team2"))
-        {
-            BounceBack();
-        }
-        else if (collision.gameObject.CompareTag("SlowTrap")|| collision.gameObject.CompareTag("EggBomb"))
+        // if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Team1") || collision.gameObject.CompareTag("Team2"))
+        // {
+        //     BounceBack();
+        // }
+        if (collision.gameObject.CompareTag("SlowTrap"))
         {
             SlowPlayer();
         }
@@ -264,32 +264,31 @@ public class PlayerController : NetworkBehaviour
     }
 
 
-    void BounceBack()
+    // void BounceBack()
+    // {
+    //     if (!IsOwner) return;
+    //     //bounce logic
+    //     Vector3 bounceDirection = -rb.velocity.normalized;
+
+    //     rb.AddForce(bounceDirection * bounceForce, ForceMode.Impulse);
+
+    //     Debug.Log("Player Bounced Back!");
+
+    // }
+
+    public void SlowPlayer()
     {
-        if (!IsOwner) return;
-        //bounce logic
-        Vector3 bounceDirection = -rb.velocity.normalized;
-
-        rb.AddForce(bounceDirection * bounceForce, ForceMode.Impulse);
-
-        Debug.Log("Player Bounced Back!");
-
-    }
-
-    void SlowPlayer()
-    {
-    if (!IsOwner) return;
-
-    // reduce player speeddd
-    moveSpeed.Value = 4f;
-    Debug.Log("Player Slowed Down!");
-
+        if(!IsOwner) return;
    
-    StartCoroutine(RestorePlayerSpeed());
+        StartCoroutine(RestorePlayerSpeed());
     }
 
     IEnumerator RestorePlayerSpeed()
     {
+        // reduce player speeddd
+        moveSpeed.Value = 4f;
+        Debug.Log("Player Slowed Down!");    
+
         yield return new WaitForSeconds(3f);
 
         // restore player speedd

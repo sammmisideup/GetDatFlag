@@ -8,8 +8,10 @@ public class NewBulletScript : NetworkBehaviour
     [SerializeField]
     private float speed = 20f;
 
-    [SerializeField]
-    private GameObject player;
+    // [SerializeField]
+    // private GameObject player;
+    
+    public EggBombGun parent;
 
     public override void OnNetworkSpawn()
     {
@@ -20,7 +22,36 @@ public class NewBulletScript : NetworkBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        
-        Destroy(gameObject);
+
+        if(other.tag == "Team2")
+        {
+            // other.GetComponent<>().SetTrigger("Hit"); --- TRIGGER THE RECOIL ANIMATION FROM TARGET
+            // Instantiate(hitParticle, new Vector3(other.transform.position.x, other.transform.position.y, other.transform.position.z), other.transform.rotation); --- INSTANTIATE VFX PARTICLE
+            
+            if(!IsOwner) return;
+            parent.DestroyServerRpc();
+            Debug.Log("Team1 Player " + OwnerClientId+  " EggBomb hit " + other.tag);
+        }
+
+        if(other.tag == "Team1")
+        {
+            // other.GetComponent<>().SetTrigger("Hit"); --- TRIGGER THE RECOIL ANIMATION FROM TARGET
+            // Instantiate(hitParticle, new Vector3(other.transform.position.x, other.transform.position.y, other.transform.position.z), other.transform.rotation); --- INSTANTIATE VFX PARTICLE
+            
+            if(!IsOwner) return;
+            parent.DestroyServerRpc();
+            Debug.Log("Team2 Player " + OwnerClientId+  " EggBomb hit " + other.tag);
+        }
+
+        if(other.tag == "Dummy")
+        {
+            // other.GetComponent<>().SetTrigger("Hit"); --- TRIGGER THE RECOIL ANIMATION FROM TARGET
+            // Instantiate(hitParticle, new Vector3(other.transform.position.x, other.transform.position.y, other.transform.position.z), other.transform.rotation); --- INSTANTIATE VFX PARTICLE
+            
+            if(!IsOwner) return;
+            parent.DestroyServerRpc();
+            Debug.Log("Player" + OwnerClientId+  " EggBomb hit " + other.tag);
+        }
     }
+
 }

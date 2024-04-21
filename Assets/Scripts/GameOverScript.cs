@@ -29,6 +29,8 @@ public class GameOverScript : NetworkBehaviour
 
     public void RestartGame()
     {
+        // PlayerPrefs.DeleteKey("WinningScore"); // TO TEST
+        // PlayerPrefs.DeleteKey("WinningTeam");
         SceneManager.LoadScene("Lobby");
     }
 }

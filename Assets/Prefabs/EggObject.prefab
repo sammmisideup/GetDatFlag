@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6102842654631479109}
   - component: {fileID: 6835417852900094885}
   - component: {fileID: 4180650780726322777}
-  - component: {fileID: -1832833629257440145}
+  - component: {fileID: 6151992739360891648}
   m_Layer: 0
   m_Name: EggObject
   m_TagString: Egg
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2095405983
+  GlobalObjectIdHash: 4290121698
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c0be61502bb534f922ebb746851216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-1832833629257440145
+--- !u!114 &6151992739360891648
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -189,6 +189,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 6102842654631479114}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb0db5889cf2e7d47b6a397b7a91c5a9, type: 3}
+  m_Script: {fileID: 11500000, guid: 350698df4c1e10548aa4e19944c1874f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

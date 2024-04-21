@@ -965,7 +965,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1584589283742762023}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.4890003, z: 1.524}
+  m_LocalPosition: {x: 0, y: 2.416, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3494,9 +3494,9 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &2279613032688316738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3527,9 +3527,9 @@ MonoBehaviour:
   SyncRotAngleX: 1
   SyncRotAngleY: 1
   SyncRotAngleZ: 1
-  SyncScaleX: 1
-  SyncScaleY: 1
-  SyncScaleZ: 1
+  SyncScaleX: 0
+  SyncScaleY: 0
+  SyncScaleZ: 0
   PositionThreshold: 0.001
   RotAngleThreshold: 0.01
   ScaleThreshold: 0.01
@@ -3582,13 +3582,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ammo:
-    m_InternalValue: 25
+    m_InternalValue: 0
   bullet: {fileID: 6102842654631479114, guid: ef0353af7f7ebc54482ff1aed8462061, type: 3}
   initialTransform: {fileID: 8299521086202521896}
   fireRate:
     m_InternalValue: 0.4
   timeBetweenShots:
     m_InternalValue: 0
+  spawnedBullets: []
 --- !u!114 &-3044325174481880371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3617,7 +3618,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionRange: 5
-  gameManager: {fileID: 0}
   player: {fileID: 6530204079860664042}
 --- !u!114 &2800692093379924133
 MonoBehaviour:
@@ -4307,7 +4307,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6530204080753906386}
-  m_LocalRotation: {x: 0.09048074, y: -0.20795381, z: 0.01932298, w: 0.9737531}
+  m_LocalRotation: {x: 0.09048074, y: -0.20795384, z: 0.019322986, w: 0.9737531}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
