@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.34828153, g: 0.7988487, b: 0.91135836, a: 1}
+  m_IndirectSpecularColor: {r: 0.34789738, g: 0.7993108, b: 0.91130507, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -19748,7 +19748,7 @@ Transform:
   - {fileID: 281406000}
   - {fileID: 1981266025}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &440572788 stripped
 GameObject:
@@ -45375,9 +45375,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'PLAY AGAIN
-
-'
+  m_text: QUIT TO MENU
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 988b3aeb410251b4db6a85f0c6d3aa3b, type: 2}
   m_sharedMaterial: {fileID: -3500157009195896672, guid: 988b3aeb410251b4db6a85f0c6d3aa3b, type: 2}
@@ -55471,8 +55469,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1972923759}
+  - {fileID: 1696037137}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1281719826
 PrefabInstance:
@@ -84661,6 +84660,50 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fecaa53b19846834b84b5396d9299d35, type: 3}
+--- !u!1 &1696037136
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1696037137}
+  - component: {fileID: 1696037138}
+  m_Layer: 0
+  m_Name: Disconnect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1696037137
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1696037136}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.19417, y: 0.20914459, z: 15.3609295}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1276748982}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1696037138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1696037136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95eac7c97df477247a12a74d8a7d82eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1697450271
 GameObject:
   m_ObjectHideFlags: 0
@@ -106344,7 +106387,7 @@ GameObject:
   - component: {fileID: 1982360276}
   - component: {fileID: 1982360275}
   m_Layer: 5
-  m_Name: PlayAgainBtn
+  m_Name: QuitToMenuBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -106417,7 +106460,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1972923761}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: RestartGameClientRpc
+        m_MethodName: DisconnectPlayers
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -108437,8 +108480,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e48db6e3669bc3d47b9c27aa70fa401d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team1Text: {fileID: 0}
-  team2Text: {fileID: 0}
+  team1Text: {fileID: 1565773113}
+  team2Text: {fileID: 1397171301}
 --- !u!114 &2083647467
 MonoBehaviour:
   m_ObjectHideFlags: 0

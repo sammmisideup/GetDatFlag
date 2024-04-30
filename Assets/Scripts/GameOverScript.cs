@@ -10,13 +10,15 @@ public class GameOverScript : NetworkBehaviour
 {
     public TextMeshProUGUI WTeam;
     public TextMeshProUGUI WScore;
-    // Start is called before the first frame update
+    
+    [SerializeField] public static NetworkVariable<int> team1Result = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone);
+    [SerializeField] public static NetworkVariable<int> team2Result = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone);  
+
     void Start()
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        WTeam.text = PlayerPrefs.GetString("WinningTeam");
-        WScore.text = PlayerPrefs.GetString("WinningScore");
+
         NetworkManager.Singleton.Shutdown();
         DestroyNetworkManager.instance.enabled = true;
     }
@@ -24,8 +26,29 @@ public class GameOverScript : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        GetWinner();
     }
+
+    private void GetWinner()
+    {
+            if(TeamScore.team1ScoreNew.Value > TeamScore.team2ScoreNew.Value)
+            {
+                WTeam.text = "TEAM 1 WINS!";
+                WScore.text = TeamScore.team1ScoreNew.Value + " - " + TeamScore.team2ScoreNew.Value;
+            }
+
+            if(TeamScore.team1ScoreNew.Value < TeamScore.team2ScoreNew.Value)
+            {
+                WTeam.text = "TEAM 2 WINS!";
+                WScore.text = TeamScore.team1ScoreNew.Value + " - " + TeamScore.team2ScoreNew.Value;
+            }            
+
+            if(TeamScore.team1ScoreNew.Value == TeamScore.team2ScoreNew.Value)
+            {
+                WTeam.text = "DRAW!";
+                WScore.text = TeamScore.team1ScoreNew.Value + " - " + TeamScore.team2ScoreNew.Value;
+            } 
+    }    
 
     public void RestartGame()
     {

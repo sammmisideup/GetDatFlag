@@ -13,6 +13,9 @@ public class TeamScore : NetworkBehaviour
     [SerializeField] public static NetworkVariable<int> team1Score = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     [SerializeField] public static NetworkVariable<int> team2Score = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
 
+    [SerializeField] public static NetworkVariable<int> team1ScoreNew = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone);
+    [SerializeField] public static NetworkVariable<int> team2ScoreNew = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone);
+
 
     void Update()
     {
@@ -22,8 +25,8 @@ public class TeamScore : NetworkBehaviour
     private void DisplayScore()
     {
         
-        team1Text.text = team1Score.Value + " :Team 1";
-        team2Text.text = "Team 2: " + team2Score.Value;     
+        team1Text.text = team1ScoreNew.Value + " :Team 1";
+        team2Text.text = "Team 2: " + team2ScoreNew.Value;  
     }
 
 

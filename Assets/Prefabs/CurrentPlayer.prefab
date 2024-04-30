@@ -1619,7 +1619,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3101722655928618553
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2062,7 +2062,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4101349897974831694
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3417,6 +3417,7 @@ GameObject:
   - component: {fileID: 8463967467959535997}
   - component: {fileID: 4371104192377570537}
   - component: {fileID: 490029869697164050}
+  - component: {fileID: 6916021169367714521}
   m_Layer: 0
   m_Name: CurrentPlayer
   m_TagString: Player
@@ -3675,6 +3676,18 @@ MonoBehaviour:
   weaponPunch: {fileID: 6855307921566396806}
   weaponClub: {fileID: 481899187997941516}
   weaponHammer: {fileID: 9016755999323720825}
+--- !u!114 &6916021169367714521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6530204079860664042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95eac7c97df477247a12a74d8a7d82eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6530204079877329210
 GameObject:
   m_ObjectHideFlags: 0

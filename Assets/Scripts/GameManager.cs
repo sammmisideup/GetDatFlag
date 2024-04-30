@@ -37,35 +37,35 @@ public class GameManager : NetworkBehaviour
 
     private void GetWinner()
     {
-        if(timer.timeValue.Value == 0 || TeamScore.team1Score.Value == 3 || TeamScore.team2Score.Value == 3)
+        if(timer.timeValue.Value == 0 || TeamScore.team1ScoreNew.Value == 3 || TeamScore.team2ScoreNew.Value == 3)
         {
-            //winnerCanvas.SetActive(true);
-            Loader.LoadNetwork(Loader.Scene.GameOver);
+            ShowWinCanvasClientRpc();
+            // Loader.LoadNetwork(Loader.Scene.GameOver);
 
-            if(TeamScore.team1Score.Value > TeamScore.team2Score.Value)
+            if(TeamScore.team1ScoreNew.Value > TeamScore.team2ScoreNew.Value)
             {
                 winnerText.text = "TEAM 1 WINS!";
-                finalScoreText.text = TeamScore.team1Score.Value + " - " + TeamScore.team2Score.Value;
-                PlayerPrefs.SetString("WinningTeam", winnerText.text);
-                PlayerPrefs.SetString("WinningScore", finalScoreText.text);
+                finalScoreText.text = TeamScore.team1ScoreNew.Value + " - " + TeamScore.team2ScoreNew.Value;
+                // PlayerPrefs.SetString("WinningTeam", winnerText.text);
+                // PlayerPrefs.SetString("WinningScore", finalScoreText.text);
                 Invoke("PauseDelay", 4f);       
             }
 
-            if(TeamScore.team1Score.Value < TeamScore.team2Score.Value)
+            if(TeamScore.team1ScoreNew.Value < TeamScore.team2ScoreNew.Value)
             {
                 winnerText.text = "TEAM 2 WINS!";
-                finalScoreText.text = TeamScore.team2Score.Value + " - " + TeamScore.team1Score.Value;
-                PlayerPrefs.SetString("WinningTeam", winnerText.text);
-                PlayerPrefs.SetString("WinningScore", finalScoreText.text);
+                finalScoreText.text = TeamScore.team1ScoreNew.Value + " - " + TeamScore.team2ScoreNew.Value;
+                // PlayerPrefs.SetString("WinningTeam", winnerText.text);
+                // PlayerPrefs.SetString("WinningScore", finalScoreText.text);
                 Invoke("PauseDelay", 4f);
             }            
 
-            if(TeamScore.team1Score.Value == TeamScore.team2Score.Value)
+            if(TeamScore.team1ScoreNew.Value == TeamScore.team2ScoreNew.Value)
             {
                 winnerText.text = "DRAW!";
-                finalScoreText.text = TeamScore.team1Score.Value + " - " + TeamScore.team2Score.Value;
-                PlayerPrefs.SetString("WinningTeam", winnerText.text);
-                PlayerPrefs.SetString("WinningScore", finalScoreText.text);
+                finalScoreText.text = TeamScore.team1ScoreNew.Value + " - " + TeamScore.team2ScoreNew.Value;
+                // PlayerPrefs.SetString("WinningTeam", winnerText.text);
+                // PlayerPrefs.SetString("WinningScore", finalScoreText.text);
                 Invoke("PauseDelay", 4f);
             } 
 
@@ -73,9 +73,76 @@ public class GameManager : NetworkBehaviour
         }
     }
 
+    [ClientRpc]
+    public void ShowWinCanvasClientRpc()
+    {
+        winnerCanvas.SetActive(true);        
+    }
+
+    public void DisconnectPlayers()
+    {
+        if(IsServer)
+        {
+            Time.timeScale = 1;
+            DisconnectHost();
+        }
+
+        else if(IsClient)
+        {
+            Time.timeScale = 1;
+            DisconnectClient();
+        }
+    }
+
+    public void DisconnectHost()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        SendPlayersToMenuServerRpc();           
+        Disconnect();
+    }
+
+    public void DisconnectClient()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;         
+        Disconnect();        
+    }
+
+    [ServerRpc]
+    private void SendPlayersToMenuServerRpc()
+    {
+        SendPlayersToMenuClientRpc();
+    }
+
+    [ClientRpc]
+    private void SendPlayersToMenuClientRpc()
+    {
+        Time.timeScale = 1;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;           
+        Disconnect();
+        Debug.Log("Server/Host disconnected.");
+    }    
+
+    public void Disconnect()
+    {
+        NetworkManager.Singleton.Shutdown();
+        // At this point we must use the UnityEngine's SceneManager to switch back to the MainMenu
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+    }
+
+    private void BackToMenu()
+    {
+        // Loader.LoadNetwork(Loader.Scene.Lobby);
+        SceneManager.LoadScene("MainMenu");    
+    }
+
     private void PauseDelay()
     {
         Time.timeScale = 0;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;        
     }
 
     [ClientRpc]

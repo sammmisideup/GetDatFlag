@@ -58,19 +58,37 @@ public class CountDown : NetworkBehaviour
         // to add score
         if(player.CompareTag("Team1"))
         {
-                TeamScore.team1Score.Value ++;          
+                TeamScore.team1ScoreNew.Value ++; 
+
+                // AddScoreServerRpc(0);
                 Debug.Log("Team1 +1 Score!");
         }
 
         if(player.CompareTag("Team2"))
         {
-                TeamScore.team2Score.Value ++;          
+                TeamScore.team2ScoreNew.Value ++; 
+
+                // AddScoreServerRpc(1);
                 Debug.Log("Team2 +1 Score!");
         }
-
-
         }
         
+    }
+
+    [ServerRpc]
+    private void AddScoreServerRpc(int value)
+    {
+        if(value == 0)
+        {
+            // TeamScore.team1Score.Value += 1;          
+            TeamScore.team2ScoreNew.Value += 1;
+        }
+
+        if(value == 1)
+        {
+            // TeamScore.team2Score.Value += 1; 
+            TeamScore.team2ScoreNew.Value += 1;
+        }        
     }
     
     public void TimerMax()
