@@ -83,7 +83,7 @@ MonoBehaviour:
   buffedKnockback:
     m_InternalValue: 5
   playerController: {fileID: 6530204079860664042}
-  hand2: {fileID: 8076902924853261729}
+  hand2: {fileID: 6855307921566396806}
 --- !u!114 &5185472270961720358
 MonoBehaviour:
   m_ObjectHideFlags: 0
