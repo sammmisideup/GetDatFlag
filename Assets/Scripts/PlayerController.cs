@@ -331,7 +331,7 @@ public class PlayerController : NetworkBehaviour
         this.enabled = false;
         Debug.Log("Player " + OwnerClientId + " Stunned!");
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
 
         this.enabled = true;
     

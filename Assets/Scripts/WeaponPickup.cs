@@ -8,6 +8,7 @@ public class WeaponPickup : NetworkBehaviour
     [SerializeField] private GameObject weaponPunch;
     [SerializeField] private GameObject weaponClub;
     [SerializeField] private GameObject weaponHammer;
+    public WeaponCharge WeaponCharge;
 
     private void OnTriggerEnter(Collider col)
     {
@@ -18,14 +19,53 @@ public class WeaponPickup : NetworkBehaviour
         if(whatHit.CompareTag("WeaponClub"))
         {
             GiveWeaponServerRpc(0);
+            WeaponCharge.clubCharges.Value = 10;
         }     
 
         if(whatHit.CompareTag("WeaponHammer"))
         {
             GiveWeaponServerRpc(1);
+            WeaponCharge.stunCharges.Value = 3;
         }       
     }
 
+    [ServerRpc(RequireOwnership = false)]
+    private void GiveWeaponServerRpc(int code)
+    {
+        GiveWeaponClientRpc(code);
+    }
+
+    [ClientRpc]
+    private void GiveWeaponClientRpc(int code)
+    {
+        if(code == 0)
+        {
+            // StartCoroutine(Club());
+            SetClub();
+        }
+
+        if(code == 1)
+        {
+            // StartCoroutine(Hammer());
+            SetHammer();
+        }
+    }
+
+    private void SetClub()
+    {
+        weaponPunch.SetActive(false);
+        weaponClub.SetActive(true);
+        weaponHammer.SetActive(false);
+        ChangeHairClientRpc(1);
+    }
+
+    private void SetHammer()
+    {
+        weaponPunch.SetActive(false);
+        weaponClub.SetActive(false);
+        weaponHammer.SetActive(true);
+        ChangeHairClientRpc(2);        
+    }
     IEnumerator Club()
     {
         weaponPunch.SetActive(false);
@@ -55,27 +95,7 @@ public class WeaponPickup : NetworkBehaviour
         weaponHammer.SetActive(false);
             
         ChangeHairClientRpc(0);
-    }
-
-    [ServerRpc(RequireOwnership = false)]
-    private void GiveWeaponServerRpc(int code)
-    {
-        GiveWeaponClientRpc(code);
-    }
-
-    [ClientRpc]
-    private void GiveWeaponClientRpc(int code)
-    {
-        if(code == 0)
-        {
-            StartCoroutine(Club());
-        }
-
-        if(code == 1)
-        {
-            StartCoroutine(Hammer());
-        }
-    }
+    }    
 
 
     [ClientRpc]

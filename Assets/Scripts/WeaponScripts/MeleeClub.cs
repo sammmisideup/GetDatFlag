@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
-using Unity.Services.Lobbies.Models;
 
-public class MeleeStun : NetworkBehaviour
+public class MeleeClub : NetworkBehaviour
 {
     public MeleeAttack MeleeAttack;
     public WeaponCharge WeaponCharge;
     // public GameObject hitParticle; --- PUT VFX PARTICLE HERE
+    [SerializeField]
+    public float knockbackForce;
 
     [SerializeField] private GameObject player;
 
@@ -29,40 +30,43 @@ public class MeleeStun : NetworkBehaviour
     {
         // if(IsClient)
         // {
-            if(player.tag == "Team1" && other.tag == "Team2" && MeleeAttack.isAttacking && WeaponCharge.stunCharges.Value > 0)
+            if(player.tag == "Team1" && other.tag == "Team2" && MeleeAttack.isAttacking && WeaponCharge.clubCharges.Value > 0)
             {
                 // other.GetComponent<>().SetTrigger("Hit"); --- TRIGGER THE RECOIL ANIMATION FROM TARGET
 
                 // Instantiate(hitParticle, new Vector3(other.transform.position.x, other.transform.position.y, other.transform.position.z), other.transform.rotation); --- INSTANTIATE VFX PARTICLE
 
-                other.GetComponent<PlayerController>().StunPlayer();
+                Vector3 knockbackDirection = (other.transform.position - transform.position).normalized;
+                other.GetComponent<Rigidbody>().AddForce(knockbackDirection * knockbackForce, ForceMode.Impulse);
 
 
-                Debug.Log("Team 1 stun");
+                Debug.Log("Team 1 attack");
             }
 
-            if(player.tag == "Team2" && other.tag == "Team1" && MeleeAttack.isAttacking && WeaponCharge.stunCharges.Value > 0)
+            if(player.tag == "Team2" && other.tag == "Team1" && MeleeAttack.isAttacking && WeaponCharge.clubCharges.Value > 0)
             {
                 // other.GetComponent<>().SetTrigger("Hit"); --- TRIGGER THE RECOIL ANIMATION FROM TARGET
 
                 // Instantiate(hitParticle, new Vector3(other.transform.position.x, other.transform.position.y, other.transform.position.z), other.transform.rotation); --- INSTANTIATE VFX PARTICLE
 
-                other.GetComponent<PlayerController>().StunPlayer();
+                Vector3 knockbackDirection = (other.transform.position - transform.position).normalized;
+                other.GetComponent<Rigidbody>().AddForce(knockbackDirection * knockbackForce, ForceMode.Impulse);
 
 
-                Debug.Log("Team 2 stun");
+                Debug.Log("Team 2 attack");
             }
 
-            if(other.tag == "Dummy" && MeleeAttack.isAttacking && WeaponCharge.stunCharges.Value > 0)
+            if(other.tag == "Dummy" && MeleeAttack.isAttacking && WeaponCharge.clubCharges.Value > 0)
             {
                 // other.GetComponent<>().SetTrigger("Hit"); --- TRIGGER THE RECOIL ANIMATION FROM TARGET
 
                 // Instantiate(hitParticle, new Vector3(other.transform.position.x, other.transform.position.y, other.transform.position.z), other.transform.rotation); --- INSTANTIATE VFX PARTICLE
 
-                other.GetComponent<PlayerController>().StunPlayer();
+                Vector3 knockbackDirection = (other.transform.position - transform.position).normalized;
+                other.GetComponent<Rigidbody>().AddForce(knockbackDirection * knockbackForce, ForceMode.Impulse);
 
 
-                Debug.Log("Dummy stunned");
+                Debug.Log("Dummy attacked");
             }
 
         // }

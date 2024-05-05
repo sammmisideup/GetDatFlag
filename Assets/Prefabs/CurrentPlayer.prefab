@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5185472270961720358}
   - component: {fileID: 1926162479672432014}
   - component: {fileID: 6161829843013023892}
+  - component: {fileID: 8701438209822452864}
   m_Layer: 0
   m_Name: TriggerDetector
   m_TagString: Untagged
@@ -130,6 +131,22 @@ MonoBehaviour:
   hair1: {fileID: 8987803325414397965}
   hair2: {fileID: 1022684018122904012}
   hair3: {fileID: 6937706317252766872}
+--- !u!114 &8701438209822452864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 208553041691197630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c2588c4a8d3fb14184b171bfaddeb4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponPunch: {fileID: 6855307921566396806}
+  weaponClub: {fileID: 481899187997941516}
+  weaponHammer: {fileID: 9016755999323720825}
+  WeaponCharge: {fileID: 1767280077706807256}
 --- !u!1 &273088158465228916
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,7 +259,7 @@ GameObject:
   - component: {fileID: 4202993130126297619}
   - component: {fileID: 2139474470975651545}
   - component: {fileID: 9015057333355777907}
-  - component: {fileID: 1364297966642049277}
+  - component: {fileID: 1409132040647636522}
   m_Layer: 0
   m_Name: weaponClub
   m_TagString: Untagged
@@ -328,7 +345,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.53383154, y: 0.31705213, z: 0.31953347}
   m_Center: {x: 0.06191593, y: -0.46147865, z: 0.054763187}
---- !u!114 &1364297966642049277
+--- !u!114 &1409132040647636522
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -337,11 +354,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 481899187997941516}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48c62ccac6891834c985cffdd33a2ae0, type: 3}
+  m_Script: {fileID: 11500000, guid: e5e7f23b93683ad419b03dfd11efac92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MeleeAttack: {fileID: 5038903464451156593}
-  knockbackForce: 350
+  WeaponCharge: {fileID: 1767280077706807256}
+  knockbackForce: 250
   player: {fileID: 6530204079860664042}
 --- !u!1 &640966715602131268
 GameObject:
@@ -3416,8 +3434,8 @@ GameObject:
   - component: {fileID: 2800692093379924133}
   - component: {fileID: 8463967467959535997}
   - component: {fileID: 4371104192377570537}
-  - component: {fileID: 490029869697164050}
   - component: {fileID: 6916021169367714521}
+  - component: {fileID: 1767280077706807256}
   m_Layer: 0
   m_Name: CurrentPlayer
   m_TagString: Player
@@ -3661,21 +3679,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minimapCam: {fileID: 4101349897974831695}
   minimapCanvas: {fileID: 3101722655928618557}
---- !u!114 &490029869697164050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6530204079860664042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c2588c4a8d3fb14184b171bfaddeb4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponPunch: {fileID: 6855307921566396806}
-  weaponClub: {fileID: 481899187997941516}
-  weaponHammer: {fileID: 9016755999323720825}
 --- !u!114 &6916021169367714521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3688,6 +3691,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95eac7c97df477247a12a74d8a7d82eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1767280077706807256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6530204079860664042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4be74ad8a076354e938c2300b4f7929, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clubCharges:
+    m_InternalValue: 0
+  stunCharges:
+    m_InternalValue: 0
+  clubWeapon: {fileID: 481899187997941516}
+  stunWeapon: {fileID: 9016755999323720825}
+  punchWeapon: {fileID: 6855307921566396806}
 --- !u!1 &6530204079877329210
 GameObject:
   m_ObjectHideFlags: 0
@@ -5622,6 +5644,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MeleeAttack: {fileID: 5038903464451156593}
+  WeaponCharge: {fileID: 1767280077706807256}
   player: {fileID: 6530204079860664042}
 --- !u!1 &9088395826867426838
 GameObject:
