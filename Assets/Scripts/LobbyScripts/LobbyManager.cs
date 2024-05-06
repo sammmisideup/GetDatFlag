@@ -578,6 +578,21 @@ public class LobbyManager : NetworkBehaviour
         Debug.Log("Gamemode: 2v2");
     }
 
+    public void PlayerLimitNull()
+    {
+        if(playerLimit == 2 || playerLimit == 4)
+        {
+            loadingRoomPanel.SetActive(true);
+        }
+        
+        else
+        {
+            Debug.Log("Please select a Player Limit");           
+            return;
+        }
+
+    }    
+
 
 
 
