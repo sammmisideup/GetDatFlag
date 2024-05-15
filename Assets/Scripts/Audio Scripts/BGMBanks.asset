@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9cdadfd53122374580883c75e3abb9f, type: 3}
+  m_Name: BGMBanks
+  m_EditorClassIdentifier: 
+  BGM:
+  - name: 
+    Track: {fileID: 8300000, guid: 5d2b89a4fc430f14f93628b22879d498, type: 3}
+    loopOffset: 0
+    isLooping: 1
+  - name: 
+    Track: {fileID: 8300000, guid: f804af215c6b60543a8b4b13387b2c88, type: 3}
+    loopOffset: 0
+    isLooping: 1
+  - name: 
+    Track: {fileID: 8300000, guid: 7f95242b8c42fb54683b7e442f6ff3f7, type: 3}
+    loopOffset: 6.267
+    isLooping: 1
+  - name: 
+    Track: {fileID: 8300000, guid: 02b04a6f7683ef441a1f849159a7cec9, type: 3}
+    loopOffset: 5.811
+    isLooping: 1

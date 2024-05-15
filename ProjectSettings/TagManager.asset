@@ -27,6 +27,7 @@ TagManager:
   - Egg
   - WeaponHammer
   - WeaponClub
+  - Speaker
   layers:
   - Default
   - TransparentFX
