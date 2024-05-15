@@ -11,7 +11,7 @@ public class BGMBanks : ScriptableObject
         [HideInInspector]
         public string name = "BGM Info";
         public AudioClip Track;
-        public long loopOffset;
+        public float loopOffset;
         public bool isLooping;
 
         // Expose the name with index in the Inspector

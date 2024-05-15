@@ -11,20 +11,20 @@ public class BGMPlayer : MonoBehaviour
     public AudioSource sound;
     [SerializeField] private AudioClip bgmLoaded;
     public float sfxVol = 1f;
-    private long loopOffset;
+    private float loopOffset;
     private bool isLoop;
-    private bool isDone = true;
+    [SerializeField] private bool isDone = true;
     public float totalSecs, aveDelta;
     public int FPS;
 
     void Awake()
     {
         // Check if an instance of the script already exists
-        
+
     }
 
     void Start()
-    {   
+    {
         GameObject[] soundObjects = GameObject.FindGameObjectsWithTag("Speaker");
         if (soundObjects.Length > 1)
         {
@@ -37,15 +37,15 @@ public class BGMPlayer : MonoBehaviour
         GameObject soundObject = soundObjects[0];
 
         if (soundObject == null)
-        { 
+        {
             soundObject = Instantiate(SpeakerPrefab);
             DontDestroyOnLoad(gameObject);
-            
+
         }
         else
         {
             DontDestroyOnLoad(gameObject);
-            
+
 
         }
         sound = soundObject.GetComponent<AudioSource>();
@@ -70,7 +70,11 @@ public class BGMPlayer : MonoBehaviour
         }
     }
 
-
+    private void Update()
+    {   
+        //Debug.LogWarning("Sound is Playing: "+ sound.isPlaying);
+        StartCoroutine(PlayBGM());
+    }
 
     public void LoadAndPlayBGM(int tempIndex)
     {
@@ -84,13 +88,12 @@ public class BGMPlayer : MonoBehaviour
             if (index != BGMIndex || sound.clip == null || bgmBnk.BGM[index].Track == null)
             {
                 sound.Stop();
-                sound.timeSamples = 0;
+                sound.time = 0;
                 BGMIndex = index;
                 bgmLoaded = bgmBnk.BGM[BGMIndex].Track;
                 sound.clip = bgmLoaded;
                 loopOffset = bgmBnk.BGM[BGMIndex].loopOffset;
                 isLoop = bgmBnk.BGM[BGMIndex].isLooping;
-                Debug.LogWarning("Loop Offset: " + loopOffset);
                 sound.Play();
             }
 
@@ -98,14 +101,17 @@ public class BGMPlayer : MonoBehaviour
             {
                 AverageDeltaTime();
 
-                if (isLoop && sound.timeSamples >= (sound.clip.samples - (sound.clip.frequency * aveDelta)))
+                if (isLoop && sound.time >= sound.clip.length - aveDelta)
                 {
+                    //sound.Stop();
                     Debug.LogWarning("Time at loop: " + Time.time);
-                    sound.timeSamples = (int)loopOffset;
+                    sound.time = loopOffset;
+                    Debug.LogError("Sound.Time: " + sound.time);
                     Debug.LogError("Looped");
+                    sound.Play();
                     isDone = false;
                 }
-                else if (!isLoop && sound.timeSamples >= sound.clip.samples)
+                else if (!isLoop && sound.time >= sound.clip.length)
                 {
                     sound.Stop();
                 }

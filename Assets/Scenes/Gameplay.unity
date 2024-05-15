@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.34789738, g: 0.7993108, b: 0.91130507, a: 1}
+  m_IndirectSpecularColor: {r: 0.34828153, g: 0.7988487, b: 0.91135836, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5962,7 +5962,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6530204080565256373, guid: 338e81d72a7b51f4dbefe03f10c076e9, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.031604234
+      value: 0.031604238
       objectReference: {fileID: 0}
     - target: {fileID: 6530204080565256373, guid: 338e81d72a7b51f4dbefe03f10c076e9, type: 3}
       propertyPath: m_LocalRotation.y
@@ -5970,7 +5970,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6530204080565256373, guid: 338e81d72a7b51f4dbefe03f10c076e9, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.13505256
+      value: -0.13505255
       objectReference: {fileID: 0}
     - target: {fileID: 6530204080619866172, guid: 338e81d72a7b51f4dbefe03f10c076e9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6002,11 +6002,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6530204080753906384, guid: 338e81d72a7b51f4dbefe03f10c076e9, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.22688107
+      value: 0.22688109
       objectReference: {fileID: 0}
     - target: {fileID: 6530204080753906384, guid: 338e81d72a7b51f4dbefe03f10c076e9, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.021081686
+      value: 0.021081688
       objectReference: {fileID: 0}
     - target: {fileID: 6530204080753906384, guid: 338e81d72a7b51f4dbefe03f10c076e9, type: 3}
       propertyPath: m_LocalRotation.y
@@ -30890,8 +30890,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920.5098, y: 2154}
+  m_AnchoredPosition: {x: 0, y: -88}
+  m_SizeDelta: {x: 1024, y: 1024}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &724418263
 MonoBehaviour:
@@ -30913,7 +30913,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c5889d1bca680cc4ba1b139fb6b79e32, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ab65e3d0b87d79646ad4a36952ca442e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -82803,6 +82803,7 @@ GameObject:
   - component: {fileID: 1581059969}
   - component: {fileID: 1581059968}
   - component: {fileID: 1581059967}
+  - component: {fileID: 1581059971}
   m_Layer: 5
   m_Name: TeamScoreUI
   m_TagString: Untagged
@@ -82895,6 +82896,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1581059971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1581059966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1e7cbfe31d96f843bae9e1e9b64fa68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BGM_Index: 3
 --- !u!1 &1582014303 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 53f33b8c25787714cad6e8de8cfe53e4, type: 3}
@@ -84121,7 +84135,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1656792280}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
@@ -84132,7 +84146,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -584, y: -253}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!1001 &1658817283
@@ -106848,6 +106862,7 @@ GameObject:
   - component: {fileID: 1972923759}
   - component: {fileID: 1972923760}
   - component: {fileID: 1972923761}
+  - component: {fileID: 1972923762}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameManager
@@ -106913,6 +106928,19 @@ MonoBehaviour:
   teamSelection: {fileID: 821996874}
   hairSelection: {fileID: 1824377708}
   playerList: []
+--- !u!114 &1972923762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1972923758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1e7cbfe31d96f843bae9e1e9b64fa68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BGM_Index: 2
 --- !u!1 &1975083157 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 93d0b23b5ded46147819d7114d152aaf, type: 3}
