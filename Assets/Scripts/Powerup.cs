@@ -7,7 +7,7 @@ public class Powerup : NetworkBehaviour
 {
     public NetworkVariable<float> buffedMovespeed = new NetworkVariable<float>(6, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
-    public NetworkVariable<float> buffedKnockback = new NetworkVariable<float>(10, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<float> buffedKnockback = new NetworkVariable<float>(35, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     [SerializeField] private GameObject playerController;
     [SerializeField] private GameObject hand2;
@@ -109,15 +109,15 @@ public class Powerup : NetworkBehaviour
     IEnumerator SlowDown()
     {
         playerController.GetComponent<PlayerController>().moveSpeed.Value = 4f;
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1.5f);
         playerController.GetComponent<PlayerController>().moveSpeed.Value = 8f;
     }    
 
     IEnumerator KnockbackBoost()
     {
         hand2.GetComponent<MeleeDetection>().knockbackForce += buffedKnockback.Value;
-        yield return new WaitForSeconds(5f);
-        hand2.GetComponent<MeleeDetection>().knockbackForce = 75f;
+        yield return new WaitForSeconds(6f);
+        hand2.GetComponent<MeleeDetection>().knockbackForce = 65;
     } 
 
 

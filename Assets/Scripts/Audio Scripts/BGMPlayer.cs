@@ -70,11 +70,12 @@ public class BGMPlayer : MonoBehaviour
         }
     }
 
-    private void Update()
-    {   
-        //Debug.LogWarning("Sound is Playing: "+ sound.isPlaying);
-        StartCoroutine(PlayBGM());
-    }
+    // private void Update()                                          // na-call na yung looping Coroutine sa Start, no need na siya sa Update
+    // {                                                              // kapag nasa Update yung Coroutine, infinite Coroutines ang nas-start at nagc-cause ng massive drop sa performance
+    //     //Debug.LogWarning("Sound is Playing: "+ sound.isPlaying); // tinest ko yung switching ng BGMs, okay pa rin naman.
+                                                                      //kaso may drop in performance pa rin talaga pero mas less dito^^^
+    //     StartCoroutine(PlayBGM());                                 // -- jihmark
+    // }
 
     public void LoadAndPlayBGM(int tempIndex)
     {

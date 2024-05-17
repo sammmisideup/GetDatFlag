@@ -22,13 +22,13 @@ public class NewBulletScript : NetworkBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if(!IsOwner) return;
 
         if(other.tag == "Team2")
         {
             // other.GetComponent<>().SetTrigger("Hit"); --- TRIGGER THE RECOIL ANIMATION FROM TARGET
             // Instantiate(hitParticle, new Vector3(other.transform.position.x, other.transform.position.y, other.transform.position.z), other.transform.rotation); --- INSTANTIATE VFX PARTICLE
             
-            if(!IsOwner) return;
             parent.DestroyServerRpc();
             Debug.Log("Team1 Player " + OwnerClientId+  " EggBomb hit " + other.tag);
         }
@@ -37,8 +37,7 @@ public class NewBulletScript : NetworkBehaviour
         {
             // other.GetComponent<>().SetTrigger("Hit"); --- TRIGGER THE RECOIL ANIMATION FROM TARGET
             // Instantiate(hitParticle, new Vector3(other.transform.position.x, other.transform.position.y, other.transform.position.z), other.transform.rotation); --- INSTANTIATE VFX PARTICLE
-            
-            if(!IsOwner) return;
+
             parent.DestroyServerRpc();
             Debug.Log("Team2 Player " + OwnerClientId+  " EggBomb hit " + other.tag);
         }
@@ -47,8 +46,7 @@ public class NewBulletScript : NetworkBehaviour
         {
             // other.GetComponent<>().SetTrigger("Hit"); --- TRIGGER THE RECOIL ANIMATION FROM TARGET
             // Instantiate(hitParticle, new Vector3(other.transform.position.x, other.transform.position.y, other.transform.position.z), other.transform.rotation); --- INSTANTIATE VFX PARTICLE
-            
-            if(!IsOwner) return;
+
             parent.DestroyServerRpc();
             Debug.Log("Player" + OwnerClientId+  " EggBomb hit " + other.tag);
         }

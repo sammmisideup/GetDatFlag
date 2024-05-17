@@ -34,6 +34,7 @@ public class GameManager : NetworkBehaviour
     {
         GetWinner();
         StartSpawners();
+        StopSpawners();
         StartSelections();
     }
 
@@ -41,6 +42,7 @@ public class GameManager : NetworkBehaviour
     {
         if(timer.timeValue.Value == 0 || TeamScore.team1ScoreNew.Value == 3 || TeamScore.team2ScoreNew.Value == 3)
         {
+            timer.timeValue.Value = 0f;
             ShowWinCanvasClientRpc();
             // Loader.LoadNetwork(Loader.Scene.GameOver);
 
@@ -48,27 +50,33 @@ public class GameManager : NetworkBehaviour
             {
                 winnerText.text = "TEAM 1 WINS!";
                 finalScoreText.text = TeamScore.team1ScoreNew.Value + " - " + TeamScore.team2ScoreNew.Value;
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;     
                 // PlayerPrefs.SetString("WinningTeam", winnerText.text);
                 // PlayerPrefs.SetString("WinningScore", finalScoreText.text);
-                Invoke("PauseDelay", 4f);       
+                // Invoke("PauseDelay", 4f);     
             }
 
             if(TeamScore.team1ScoreNew.Value < TeamScore.team2ScoreNew.Value)
             {
                 winnerText.text = "TEAM 2 WINS!";
                 finalScoreText.text = TeamScore.team1ScoreNew.Value + " - " + TeamScore.team2ScoreNew.Value;
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;     
                 // PlayerPrefs.SetString("WinningTeam", winnerText.text);
                 // PlayerPrefs.SetString("WinningScore", finalScoreText.text);
-                Invoke("PauseDelay", 4f);
+                // Invoke("PauseDelay", 4f);
             }            
 
             if(TeamScore.team1ScoreNew.Value == TeamScore.team2ScoreNew.Value)
             {
                 winnerText.text = "DRAW!";
                 finalScoreText.text = TeamScore.team1ScoreNew.Value + " - " + TeamScore.team2ScoreNew.Value;
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;     
                 // PlayerPrefs.SetString("WinningTeam", winnerText.text);
                 // PlayerPrefs.SetString("WinningScore", finalScoreText.text);
-                Invoke("PauseDelay", 4f);
+                // Invoke("PauseDelay", 4f);
             } 
 
 
@@ -176,6 +184,18 @@ public class GameManager : NetworkBehaviour
             weaponSpawner1.GetComponent<PowerupSpawner>().enabled = true;
         }
     }
+
+    private void StopSpawners()
+    {
+        if(timer.timeValue.Value <= 0)
+        {
+            flagSpawner.GetComponent<FlagSpawner>().enabled = false;                 // turn off the scripts from the spawners and set time to spawn for flag spawner to 3 seconds
+            powerupSpawner.GetComponent<PowerupSpawner>().enabled = false;
+            weaponSpawner.GetComponent<PowerupSpawner>().enabled = false;
+            powerupSpawner1.GetComponent<PowerupSpawner>().enabled = false;
+            weaponSpawner1.GetComponent<PowerupSpawner>().enabled = false;
+        }
+    }    
 
     private void StartSelections()
     {
