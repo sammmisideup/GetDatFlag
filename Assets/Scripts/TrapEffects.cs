@@ -16,16 +16,27 @@ public class TrapEffects : NetworkBehaviour
         // {
         //     BounceBack();
         // }
-        if (collision.gameObject.CompareTag("SlowTrap"))
-        {
-            SlowPlayer();
-        }
-        else if (collision.gameObject.CompareTag("StickTrap"))
+        if (collision.gameObject.CompareTag("StickTrap"))
         {
             StickToTrap(); 
         }
     }
 
+    void OnTriggerStay(Collider collision)
+    {
+        if (collision.gameObject.CompareTag("SlowTrap"))
+        {
+            SlowPlayer();
+        }
+    }
+
+    void OnTriggerExit(Collider collision)
+    {
+        if (collision.gameObject.CompareTag("SlowTrap"))
+        {
+            UnslowPlayer();
+        }
+    }
 
     // void BounceBack()
     // {
@@ -43,8 +54,16 @@ public class TrapEffects : NetworkBehaviour
     {
         if(!IsOwner) return;
    
-        StartCoroutine(RestorePlayerSpeed());
+        PlayerController.moveSpeed.Value = 4f;
+        Debug.Log("Player Slowed Down!");    
     }
+
+    public void UnslowPlayer()
+    {
+        if(!IsOwner) return;
+   
+        StartCoroutine(RestorePlayerSpeed());
+    }    
 
     IEnumerator RestorePlayerSpeed()
     {
@@ -52,7 +71,7 @@ public class TrapEffects : NetworkBehaviour
         PlayerController.moveSpeed.Value = 4f;
         Debug.Log("Player Slowed Down!");    
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
 
         // restore player speedd
         PlayerController.moveSpeed.Value = 8f; //timer

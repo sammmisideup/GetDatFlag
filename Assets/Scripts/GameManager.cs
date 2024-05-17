@@ -15,7 +15,9 @@ public class GameManager : NetworkBehaviour
     [SerializeField] private GameObject winnerCanvas;
     [SerializeField] private GameObject flagSpawner;
     [SerializeField] private GameObject weaponSpawner;
+    [SerializeField] private GameObject weaponSpawner1;
     [SerializeField] private GameObject powerupSpawner;
+    [SerializeField] private GameObject powerupSpawner1;
     [SerializeField] private GameObject teamSelection;
     [SerializeField] private GameObject hairSelection;
 
@@ -81,6 +83,12 @@ public class GameManager : NetworkBehaviour
 
     public void DisconnectPlayers()
     {
+        BGMPlayer play = FindObjectOfType<BGMPlayer>();
+        if(play != null)
+        {
+            Destroy(play.gameObject);
+        }
+
         if(IsServer)
         {
             Time.timeScale = 1;
@@ -164,6 +172,8 @@ public class GameManager : NetworkBehaviour
             flagSpawner.GetComponent<FlagSpawner>().enabled = true;                 // turn off the scripts from the spawners and set time to spawn for flag spawner to 3 seconds
             powerupSpawner.GetComponent<PowerupSpawner>().enabled = true;
             weaponSpawner.GetComponent<PowerupSpawner>().enabled = true;
+            powerupSpawner1.GetComponent<PowerupSpawner>().enabled = true;
+            weaponSpawner1.GetComponent<PowerupSpawner>().enabled = true;
         }
     }
 

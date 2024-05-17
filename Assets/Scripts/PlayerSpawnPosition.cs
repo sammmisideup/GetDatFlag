@@ -12,6 +12,7 @@ public class PlayerSpawnPosition : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
+        if(!IsOwner) return;
         SpawnPositionServerRpc();
     }
 
@@ -27,23 +28,15 @@ public class PlayerSpawnPosition : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     private void SpawnPositionServerRpc()
     {
+        SpawnPositionClientRpc();
+    }
+
+    [ClientRpc]
+    private void SpawnPositionClientRpc()
+    {
         player.transform.position = new Vector3(Random.Range(-72f, -90f), Random.Range(16f, 16f), Random.Range(-6f, -28f));
         player.transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
     }
-
-    // IEnumerator CheckTimer()
-    // {
-    //     yield return new WaitForSeconds(0.475f);
-    //     timerObj = GameObject.Find("TimerCanvas");
-    //     timer = timerObj.GetComponent<Timer>();   
-        
-    // }    
-
-    // [ServerRpc(RequireOwnership = false)]
-    // private void GameStartPositionServerRpc()
-    // {
-
-    // }
 
 
 }

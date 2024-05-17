@@ -12,30 +12,18 @@ public class PlayerStartPosition : NetworkBehaviour
         if(IsOwner && Timer.timeValuePub.Value < 300 && Timer.timeValuePub.Value > 299.95) // SA WAKAS GUMANA NA
         {
             canTP.Value = true;
-            transform.position = new Vector3(-58f, -2.5f, Random.Range(-20f, -30f));
+            // transform.position = new Vector3(-58f, -2.5f, Random.Range(-20f, -30f));
+            transform.position = new Vector3(0f, 0f, 0f);
             transform.rotation = new Quaternion(0f, 0f, 0f, 0f);            
             Debug.Log("Starting Position");
         }        
-
-        // if(isReady.Value == true)
-        // {
-        //     transform.position = new Vector3(-58f, -2.5f, Random.Range(-20f, -30f));
-        //     transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
-        //     Debug.Log("way 1");              
-        // }
-
-        // if(isReady.Value == true)
-        // {
-        //     StartPositionServerRpc();
-        //     Debug.Log("way 2");    
-        // }
 
         if(IsOwner && Input.GetKeyDown(KeyCode.R))       // MANUAL TELEPORT or UNSTUCK BUTTON
         {
             if(canTP.Value == true)
             {
-                transform.position = new Vector3(-58f, -2.5f, Random.Range(-20f, -30f));
-                transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
+                // transform.position = new Vector3(-58f, -2.5f, Random.Range(-20f, -30f));
+                StartCoroutine(ResetPlayerPosition());
             }
 
         }
@@ -43,18 +31,15 @@ public class PlayerStartPosition : NetworkBehaviour
 
     }
 
-    [ServerRpc(RequireOwnership = false)]
-    private void StartPositionServerRpc()
+    IEnumerator ResetPlayerPosition()
     {
-        transform.position = new Vector3(-58f, -2.5f, Random.Range(-20f, -30f));
+        transform.position = new Vector3(0f, 0f, 0f);
         transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
-    }
+        canTP.Value = false;
 
-    [ClientRpc]
-    private void StartPositionClientRpc()
-    {
-        transform.position = new Vector3(-58f, -2.5f, Random.Range(-20f, -30f));
-        transform.rotation = new Quaternion(0f, 0f, 0f, 0f);   
+        yield return new WaitForSeconds(7f);
+
+        canTP.Value = true;
     }
 
 

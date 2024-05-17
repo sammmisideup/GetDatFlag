@@ -192,6 +192,7 @@ GameObject:
   - component: {fileID: 474981405586180852}
   - component: {fileID: -3839978794564388725}
   - component: {fileID: 5380083647626989520}
+  - component: {fileID: 8045613305895452218}
   m_Layer: 0
   m_Name: weaponHammer
   m_TagString: WeaponHammer
@@ -277,7 +278,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.4672935, y: 3.253306, z: 0.6044119}
+  m_Size: {x: 2.23, y: 3.55, z: 1.6}
   m_Center: {x: 0.1268445, y: 0.12773526, z: -0.009672821}
 --- !u!114 &474981405586180852
 MonoBehaviour:
@@ -291,7 +292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1951428456
+  GlobalObjectIdHash: 451553997
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -341,3 +342,24 @@ MonoBehaviour:
   InLocalSpace: 0
   Interpolate: 1
   SlerpPosition: 0
+--- !u!95 &8045613305895452218
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7452725614546146368}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 50e7e762cc1b2db4eafbcb67496bad74, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

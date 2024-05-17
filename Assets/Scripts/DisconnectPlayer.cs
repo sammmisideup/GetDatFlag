@@ -20,6 +20,12 @@ public class DisconnectPlayer : NetworkBehaviour
 
     public void DisconnectPlayers()
     {
+        BGMPlayer play = FindObjectOfType<BGMPlayer>();
+        if(play != null)
+        {
+            Destroy(play.gameObject);
+        }
+
         if(IsServer)
         {
             DisconnectHost();

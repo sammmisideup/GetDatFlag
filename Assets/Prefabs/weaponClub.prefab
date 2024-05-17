@@ -192,6 +192,7 @@ GameObject:
   - component: {fileID: 5618899882494547927}
   - component: {fileID: 3964349877843886715}
   - component: {fileID: -9085365543613496151}
+  - component: {fileID: 5843318170294460333}
   m_Layer: 0
   m_Name: weaponClub
   m_TagString: WeaponClub
@@ -244,6 +245,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: e0ab931247c62a943b525b557911b376, type: 2}
+  - {fileID: 2100000, guid: 1ddf78756e040d34dbd8880159e76f41, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -276,7 +278,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.23319551, y: 1.5241735, z: 0.23502442}
+  m_Size: {x: 0.59, y: 1.73, z: 0.57}
   m_Center: {x: 0.070758656, y: -0.009185225, z: 0.008752909}
 --- !u!114 &5618899882494547927
 MonoBehaviour:
@@ -290,7 +292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3754007520
+  GlobalObjectIdHash: 769472744
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -340,3 +342,24 @@ MonoBehaviour:
   InLocalSpace: 0
   Interpolate: 1
   SlerpPosition: 0
+--- !u!95 &5843318170294460333
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3864447237259100941}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: aedf40833d577d840b3e97fd5ad5cb79, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

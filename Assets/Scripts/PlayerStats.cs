@@ -19,7 +19,7 @@ public class PlayerStats : NetworkBehaviour
         
         speedCount.text = "Speed: " + playerController.GetComponent<PlayerController>().moveSpeed.Value.ToString();
         knockbackStrength.text = "Knockback Str: " + hand2.GetComponent<MeleeDetection>().knockbackForce.ToString();
-        ammo.text = "Ammo: " + playerController.GetComponent<EggBombGun>().ammo.Value.ToString();      
+        ammo.text = "Eggbomb Ammo: " + playerController.GetComponent<EggBombGun>().ammo.Value.ToString();      
 
     }
 

@@ -194,6 +194,7 @@ GameObject:
   - component: {fileID: 6835417852900094885}
   - component: {fileID: 4180650780726322777}
   - component: {fileID: 6151992739360891648}
+  - component: {fileID: 3545018574110158391}
   m_Layer: 0
   m_Name: EggObject
   m_TagString: Egg
@@ -246,6 +247,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 0fcd2a664f656f043961e519acb0aabc, type: 2}
+  - {fileID: 2100000, guid: 1ddf78756e040d34dbd8880159e76f41, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -278,7 +280,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.75
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &4660983774069946687
 Rigidbody:
@@ -308,7 +310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 4290121698
+  GlobalObjectIdHash: 2095405983
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -370,3 +372,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 350698df4c1e10548aa4e19944c1874f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &3545018574110158391
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6102842654631479114}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 75bec95f5e3723242b495c3157c22f6c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
