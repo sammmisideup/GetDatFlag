@@ -26,7 +26,7 @@ public class PlayerController : NetworkBehaviour
     [Header("GroundCheck")]
     public float playerHeight;
     public LayerMask whatIsGround;
-    bool grounded;
+    public bool grounded;
 
 
     public Transform orientation;
@@ -46,6 +46,13 @@ public class PlayerController : NetworkBehaviour
     public float bounceForce;
 
     [SerializeField] private Animator animator; // FOR 3D PLAYER
+
+    // Sound
+    public AudioSource src;
+    public AudioClip punchSound;
+    public AudioClip jumpSound;  
+    public MeleeAttack MeleeAttack;
+
 
 
     public override void OnNetworkSpawn()
@@ -153,18 +160,23 @@ public class PlayerController : NetworkBehaviour
         {
             animator.SetFloat("speed", Mathf.Abs(verticalInput)); // FOR MOVEMENT ANIMATION
             animator.SetFloat("speed2", moveSpeed.Value);
+
+                            
         }
 
         if(Input.GetKey(KeyCode.S))
         {
             animator.SetFloat("speed", Mathf.Abs(verticalInput)); // FOR MOVEMENT ANIMATION
             animator.SetFloat("speed2", moveSpeed.Value);
+
         }
 
         if(horizontalInput == 1 || verticalInput == 0)
         {
             animator.SetFloat("speed", Mathf.Abs(horizontalInput)); // FOR MOVEMENT ANIMATION
             animator.SetFloat("speed2", moveSpeed.Value);
+
+              
         }
      
 
@@ -179,10 +191,35 @@ public class PlayerController : NetworkBehaviour
             Invoke(nameof(ResetJump), jumpCooldown);
         }
 
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0) && MeleeAttack.canAttack)
         {
             animator.SetTrigger("isAttacking");
+
+            SendSoundServerRpc(0);
+             
         }
+      
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void SendSoundServerRpc(int value)
+    {
+        SendSoundClientRpc(value);
+    }
+
+    [ClientRpc]
+    private void SendSoundClientRpc(int value)
+    {
+        if(value == 0)
+        {
+            AudioSource.PlayClipAtPoint(punchSound, new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z));
+        }
+
+        if(value == 1)
+        {
+            AudioSource.PlayClipAtPoint(jumpSound, new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z));
+        }
+
     }
 
 
@@ -232,6 +269,8 @@ public class PlayerController : NetworkBehaviour
 
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
         rb.AddForce(Vector3.down * 200f, ForceMode.Force);
+
+        SendSoundServerRpc(1);
 
         
 

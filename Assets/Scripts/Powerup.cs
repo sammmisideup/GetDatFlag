@@ -12,6 +12,8 @@ public class Powerup : NetworkBehaviour
     [SerializeField] private GameObject playerController;
     [SerializeField] private GameObject hand2;
 
+    public AudioClip pickupSound;    
+
     private void OnTriggerEnter(Collider col)
     {
         if(!IsOwner) return;
@@ -20,55 +22,50 @@ public class Powerup : NetworkBehaviour
 
         if(whatHit.CompareTag("speedBoost"))
         {
-            // AudioClip clip = pickupSFX[UnityEngine.Random.Range(0, pickupSFX.Length)]; // AUDIO
-            // audioSrc.PlayOneShot(clip);            
-
+            SendSoundServerRpc();
             StartCoroutine(SpeedBoost());
 
-            // playerLives.text = "Lives \n" + Player.GetComponent<LivesRespawn>().lives; // TEXT UPDATE IF THERE'S ONE
             PowerupMessageServerRpc(0);
-            // Destroy(whatHit);
         }
 
         if(whatHit.CompareTag("strengthBoost"))
         {
-            // AudioClip clip = pickupSFX[UnityEngine.Random.Range(0, pickupSFX.Length)]; // AUDIO
-            // audioSrc.PlayOneShot(clip);            
-
+            SendSoundServerRpc();
             StartCoroutine(KnockbackBoost());
             
-            // playerLives.text = "Lives \n" + Player.GetComponent<LivesRespawn>().lives; // TEXT UPDATE IF THERE'S ONE
             PowerupMessageServerRpc(1);
-            // Destroy(whatHit);
         }
 
         if(whatHit.CompareTag("Egg"))
         {
-            // AudioClip clip = pickupSFX[UnityEngine.Random.Range(0, pickupSFX.Length)]; // AUDIO
-            // audioSrc.PlayOneShot(clip);            
-
+            SendSoundServerRpc();
             playerController.GetComponent<EggBombGun>().ammo.Value = 5;
             
-            
-            // playerLives.text = "Lives \n" + Player.GetComponent<LivesRespawn>().lives; // TEXT UPDATE IF THERE'S ONE
             PowerupMessageServerRpc(2);
-            // Destroy(whatHit);
         }      
 
         if(whatHit.CompareTag("EggBomb"))
         {
-            // AudioClip clip = pickupSFX[UnityEngine.Random.Range(0, pickupSFX.Length)]; // AUDIO
-            // audioSrc.PlayOneShot(clip);            
-
+            SendSoundServerRpc();
             StartCoroutine(SlowDown());
             
-            // playerLives.text = "Lives \n" + Player.GetComponent<LivesRespawn>().lives; // TEXT UPDATE IF THERE'S ONE
             PowerupMessageServerRpc(3);
-            // Destroy(whatHit);
         }          
     
 
     }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void SendSoundServerRpc()
+    {
+        SendSoundClientRpc();
+    }
+
+    [ClientRpc]
+    private void SendSoundClientRpc()
+    {
+            AudioSource.PlayClipAtPoint(pickupSound, new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z));
+    }    
 
     [ServerRpc]
     private void PowerupMessageServerRpc(int value)

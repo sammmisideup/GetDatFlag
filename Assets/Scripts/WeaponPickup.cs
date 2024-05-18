@@ -9,6 +9,7 @@ public class WeaponPickup : NetworkBehaviour
     [SerializeField] private GameObject weaponClub;
     [SerializeField] private GameObject weaponHammer;
     public WeaponCharge WeaponCharge;
+    public AudioClip pickupSound;
 
     private void OnTriggerEnter(Collider col)
     {
@@ -19,15 +20,29 @@ public class WeaponPickup : NetworkBehaviour
         if(whatHit.CompareTag("WeaponClub"))
         {
             GiveWeaponServerRpc(0);
+            SendSoundServerRpc();
             WeaponCharge.clubCharges.Value = 10;
         }     
 
         if(whatHit.CompareTag("WeaponHammer"))
         {
             GiveWeaponServerRpc(1);
+            SendSoundServerRpc();
             WeaponCharge.stunCharges.Value = 3;
         }       
     }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void SendSoundServerRpc()
+    {
+        SendSoundClientRpc();
+    }
+
+    [ClientRpc]
+    private void SendSoundClientRpc()
+    {
+            AudioSource.PlayClipAtPoint(pickupSound, new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z));
+    }     
 
     [ServerRpc(RequireOwnership = false)]
     private void GiveWeaponServerRpc(int code)
