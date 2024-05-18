@@ -40,7 +40,7 @@ public class GameManager : NetworkBehaviour
 
     private void GetWinner()
     {
-        if(timer.timeValue.Value == 0 || TeamScore.team1ScoreNew.Value == 3 || TeamScore.team2ScoreNew.Value == 3)
+        if(timer.timeValue.Value == 0 || TeamScore.team1ScoreNew.Value == 5 || TeamScore.team2ScoreNew.Value == 5)
         {
             timer.timeValue.Value = 0f;
             ShowWinCanvasClientRpc();

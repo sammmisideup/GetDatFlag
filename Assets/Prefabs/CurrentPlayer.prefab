@@ -86,7 +86,7 @@ MonoBehaviour:
     m_InternalValue: 35
   playerController: {fileID: 6530204079860664042}
   hand2: {fileID: 6855307921566396806}
-  pickupSound: {fileID: 8300000, guid: 667b6f7af0313264085647fb95579ea9, type: 3}
+  pickupSound: {fileID: 8300000, guid: f6d1ee20e762fa5449954ba1a22dbd8c, type: 3}
 --- !u!114 &8859214453850859609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,6 +101,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 1290051981315201479}
   PlayerController: {fileID: 7903798118485178113}
+  src: {fileID: 0}
+  CactusSound: {fileID: 8300000, guid: 4c91f3ae937ac7443bf8d68011bc3952, type: 3}
+  SlowSound: {fileID: 8300000, guid: ed49970b090568143bcd1fe4da26b697, type: 3}
+  StickySound: {fileID: 8300000, guid: 0f1d65248a008744e89dc5ed1ee74633, type: 3}
 --- !u!114 &5185472270961720358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,7 +167,7 @@ MonoBehaviour:
   weaponClub: {fileID: 481899187997941516}
   weaponHammer: {fileID: 9016755999323720825}
   WeaponCharge: {fileID: 1767280077706807256}
-  pickupSound: {fileID: 8300000, guid: 667b6f7af0313264085647fb95579ea9, type: 3}
+  pickupSound: {fileID: 8300000, guid: f6d1ee20e762fa5449954ba1a22dbd8c, type: 3}
 --- !u!1 &273088158465228916
 GameObject:
   m_ObjectHideFlags: 0
@@ -3167,7 +3171,7 @@ AudioSource:
   m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: f52659f3d37cf1445ba7d15569677327, type: 3}
+  m_audioClip: {fileID: 8300000, guid: ad1252d2f53937549bc75fd01103caf4, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -3930,12 +3934,8 @@ MonoBehaviour:
   bounceForce: 0
   animator: {fileID: 4148036449910558886}
   src: {fileID: 81149186819729326}
-  punchSound: {fileID: 8300000, guid: d36bc01342738a44789f2285134d25c8, type: 3}
-  jumpSound: {fileID: 8300000, guid: a22e04cac5384534d8cc7c35f34097fa, type: 3}
-  playerMovementSFX:
-  - {fileID: 8300000, guid: f52659f3d37cf1445ba7d15569677327, type: 3}
-  - {fileID: 8300000, guid: a22e04cac5384534d8cc7c35f34097fa, type: 3}
-  - {fileID: 8300000, guid: d36bc01342738a44789f2285134d25c8, type: 3}
+  punchSound: {fileID: 8300000, guid: 3d1b5b03b20219945b2ea6db7e5a7572, type: 3}
+  jumpSound: {fileID: 8300000, guid: 50b0fe50d44e9004b9d9ec8f94fca4cc, type: 3}
   MeleeAttack: {fileID: 5038903464451156593}
 --- !u!114 &7428543958372945431
 MonoBehaviour:
@@ -4507,7 +4507,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6530204080565256375}
-  m_LocalRotation: {x: 0.031604238, y: 0.9642828, z: -0.13505258, w: 0.22565599}
+  m_LocalRotation: {x: 0.034297734, y: 0.96260065, z: -0.14656255, w: 0.22526234}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4590,8 +4590,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6530204080619866175}
-  m_LocalRotation: {x: 0.010853346, y: 0.97258914, z: -0.04637899, w: 0.22759977}
-  m_LocalPosition: {x: -3.106102, y: 2, z: 6.2731276}
+  m_LocalRotation: {x: 0.087502934, y: 0.9038985, z: -0.35417476, w: 0.22331847}
+  m_LocalPosition: {x: -0.5417075, y: 2.1821847, z: 1.0293834}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4787,7 +4787,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6530204080753906386}
-  m_LocalRotation: {x: 0.021081693, y: 0.9695179, z: -0.0900872, w: 0.22688106}
+  m_LocalRotation: {x: 0.023790572, y: 0.96837246, z: -0.10166291, w: 0.226613}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4943,7 +4943,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6530204081430022969}
-  m_LocalRotation: {x: 0.010853346, y: 0.97258914, z: -0.046378978, w: 0.22759983}
+  m_LocalRotation: {x: 0.08750296, y: 0.9038984, z: -0.35417476, w: 0.2233185}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

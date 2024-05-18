@@ -8,6 +8,11 @@ public class TrapEffects : NetworkBehaviour
     [SerializeField] private Rigidbody rb;
     [SerializeField] private PlayerController PlayerController;
 
+
+   
+    public AudioClip SlowSound; 
+    public AudioClip StickySound; 
+
     void OnTriggerEnter(Collider collision) // Put Slow in OnTriggerStay, Keep Stun in OnTriggerEnter; convert the traps into Trigger
     {
         if (!IsOwner) return;
@@ -19,6 +24,7 @@ public class TrapEffects : NetworkBehaviour
         if (collision.gameObject.CompareTag("StickTrap"))
         {
             StickToTrap(); 
+          SendSoundServerRpc(0);
         }
     }
 
@@ -27,6 +33,7 @@ public class TrapEffects : NetworkBehaviour
         if (collision.gameObject.CompareTag("SlowTrap"))
         {
             SlowPlayer();
+             SendSoundServerRpc(1);
         }
     }
 
@@ -35,6 +42,7 @@ public class TrapEffects : NetworkBehaviour
         if (collision.gameObject.CompareTag("SlowTrap"))
         {
             UnslowPlayer();
+
         }
     }
 
@@ -102,5 +110,25 @@ public class TrapEffects : NetworkBehaviour
         rb.freezeRotation = true;
 
         Debug.Log("Player Unstuck from Trap!");
+    }
+  
+  [ServerRpc(RequireOwnership = false)]
+    private void SendSoundServerRpc(int value)
+    {
+        SendSoundClientRpc(value);
+    }
+
+    [ClientRpc]
+    private void SendSoundClientRpc(int value)
+    {
+        if(value == 0)
+        {
+            AudioSource.PlayClipAtPoint(StickySound, new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z));
+        }
+
+        if(value == 1)
+        {
+            AudioSource.PlayClipAtPoint(SlowSound, new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z));
+        }
     }
 }
