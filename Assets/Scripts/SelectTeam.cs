@@ -19,7 +19,26 @@ public class SelectTeam : NetworkBehaviour
 
         if(whatHit.CompareTag("SetTeam1"))
         {
-            // playerCloth.material.color = Color.green;
+            ChangeTeamServerRpc(0);
+        }
+
+        if(whatHit.CompareTag("SetTeam2"))
+        {
+            ChangeTeamServerRpc(1);
+        }        
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void ChangeTeamServerRpc(int code)
+    {
+        ChangeTeamClientRpc(code);
+    }
+
+    [ClientRpc]
+    private void ChangeTeamClientRpc(int code)
+    {
+        if(code == 0)
+        {
             playerCloth.material.color = new Color32(145, 226, 27, 255);
             ChangeClotheColorClientRpc(0);
 
@@ -31,9 +50,8 @@ public class SelectTeam : NetworkBehaviour
             teamNumber.text = "Team 1";
         }
 
-        if(whatHit.CompareTag("SetTeam2"))
+        if(code == 1)
         {
-            // playerCloth.material.color = Color.yellow;
             playerCloth.material.color = new Color32(226, 158, 27, 255);
             ChangeClotheColorClientRpc(1);
 
@@ -42,8 +60,8 @@ public class SelectTeam : NetworkBehaviour
 
             if(!IsOwner) return;
             teamNumber.text = "Team 2";
-        }        
-    }
+        }
+    }    
 
     [ClientRpc]
     private void ChangeClotheColorClientRpc(int value)

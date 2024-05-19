@@ -24,8 +24,13 @@ public class TrapEffects : NetworkBehaviour
         if (collision.gameObject.CompareTag("StickTrap"))
         {
             StickToTrap(); 
-          SendSoundServerRpc(0);
+            SendSoundServerRpc(0);
         }
+
+        if (collision.gameObject.CompareTag("SlowTrap"))
+        {
+             SendSoundServerRpc(1);
+        }        
     }
 
     void OnTriggerStay(Collider collision)
@@ -33,7 +38,6 @@ public class TrapEffects : NetworkBehaviour
         if (collision.gameObject.CompareTag("SlowTrap"))
         {
             SlowPlayer();
-             SendSoundServerRpc(1);
         }
     }
 
@@ -45,6 +49,28 @@ public class TrapEffects : NetworkBehaviour
 
         }
     }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void SendSoundServerRpc(int value)
+    {
+        SendSoundClientRpc(value);
+    }
+
+    [ClientRpc]
+    private void SendSoundClientRpc(int value)
+    {
+        float volume = 1f;
+
+        if(value == 0)
+        {
+            AudioSource.PlayClipAtPoint(StickySound, new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z), volume);
+        }
+
+        if(value == 1)
+        {
+            AudioSource.PlayClipAtPoint(SlowSound, new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z), volume);
+        }
+    }    
 
     // void BounceBack()
     // {
@@ -111,24 +137,5 @@ public class TrapEffects : NetworkBehaviour
 
         Debug.Log("Player Unstuck from Trap!");
     }
-  
-  [ServerRpc(RequireOwnership = false)]
-    private void SendSoundServerRpc(int value)
-    {
-        SendSoundClientRpc(value);
-    }
 
-    [ClientRpc]
-    private void SendSoundClientRpc(int value)
-    {
-        if(value == 0)
-        {
-            AudioSource.PlayClipAtPoint(StickySound, new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z));
-        }
-
-        if(value == 1)
-        {
-            AudioSource.PlayClipAtPoint(SlowSound, new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z));
-        }
-    }
 }

@@ -210,14 +210,16 @@ public class PlayerController : NetworkBehaviour
     [ClientRpc]
     private void SendSoundClientRpc(int value)
     {
+        float volume = 1f;
+
         if(value == 0)
         {
-            AudioSource.PlayClipAtPoint(punchSound, new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z));
+            AudioSource.PlayClipAtPoint(punchSound, new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z), volume);
         }
 
         if(value == 1)
         {
-            AudioSource.PlayClipAtPoint(jumpSound, new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z));
+            AudioSource.PlayClipAtPoint(jumpSound, new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z), volume);
         }
 
     }

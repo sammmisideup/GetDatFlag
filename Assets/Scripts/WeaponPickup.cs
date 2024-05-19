@@ -41,7 +41,8 @@ public class WeaponPickup : NetworkBehaviour
     [ClientRpc]
     private void SendSoundClientRpc()
     {
-            AudioSource.PlayClipAtPoint(pickupSound, new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z));
+        float volume = 1f;
+        AudioSource.PlayClipAtPoint(pickupSound, new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z), volume);
     }     
 
     [ServerRpc(RequireOwnership = false)]

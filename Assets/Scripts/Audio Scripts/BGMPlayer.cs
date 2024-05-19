@@ -107,8 +107,8 @@ public class BGMPlayer : MonoBehaviour
                     //sound.Stop();
                     Debug.LogWarning("Time at loop: " + Time.time);
                     sound.time = loopOffset;
-                    Debug.LogError("Sound.Time: " + sound.time);
-                    Debug.LogError("Looped");
+                    // Debug.LogError("Sound.Time: " + sound.time);
+                    // Debug.LogError("Looped");
                     sound.Play();
                     isDone = false;
                 }
