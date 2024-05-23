@@ -5,6 +5,7 @@ using Unity.Netcode;
 using TMPro;
 using Unity.Collections;
 using System;
+using Unity.VisualScripting;
 
 public class PlayerName : NetworkBehaviour
 {
@@ -21,6 +22,11 @@ public class PlayerName : NetworkBehaviour
 
         base.OnNetworkSpawn();
         playerName.OnValueChanged += OnValueChanged;
+        
+        if(!IsOwner) return;
+
+        playerName.Value = PlayerPrefs.GetString("Name");
+        OnNameChangedServerRpc(playerName.Value);
     }
 
     private void OnValueChanged(FixedString32Bytes previousValue, FixedString32Bytes newValue)
@@ -31,12 +37,24 @@ public class PlayerName : NetworkBehaviour
         }
     }
 
-    void Update()
+    // void Update()
+    // {
+    //     if(!IsOwner) return;
+    //     if(Input.GetKeyDown(KeyCode.M))                              // try to activate this when someone joins instead of manually pressing it; you can use ontrigger if u want o>o
+    //     {
+    //         playerName.Value = PlayerPrefs.GetString("Name");
+    //         OnNameChangedServerRpc(playerName.Value);
+    //         Debug.Log("Update name to all");
+
+    //     }
+    // }
+
+    private void OnTriggerStay(Collider hit)
     {
         if(!IsOwner) return;
-        if(Input.GetKey(KeyCode.M))
+        if(hit.tag == "ChangeName")
         {
-            playerName.Value = "testing " + OwnerClientId;
+            playerName.Value = PlayerPrefs.GetString("Name");
             OnNameChangedServerRpc(playerName.Value);
         }
     }
@@ -52,6 +70,6 @@ public class PlayerName : NetworkBehaviour
     {
         playerName.Value = newValue;
         playerNameIn.text = playerName.Value.ToString();
-        Debug.Log("Client #" + OwnerClientId + " changed name");
+        // Debug.Log("Client #" + OwnerClientId + " changed name");
     }
 }

@@ -28,6 +28,7 @@ TagManager:
   - WeaponHammer
   - WeaponClub
   - Speaker
+  - ChangeName
   layers:
   - Default
   - TransparentFX

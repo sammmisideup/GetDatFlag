@@ -852,6 +852,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8622976433011780935}
+  - component: {fileID: 370253057583019221}
   - component: {fileID: 599194783087368151}
   - component: {fileID: 2666546525585766749}
   m_Layer: 5
@@ -881,6 +882,19 @@ RectTransform:
   m_AnchoredPosition: {x: -509.353, y: -282.38092}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &370253057583019221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1571797974669190921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cee38bededc35147976231a7abbf5a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeCam: {fileID: 0}
 --- !u!222 &599194783087368151
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1981,6 +1995,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5364458804010539874}
+  - component: {fileID: 2732760696630000535}
   - component: {fileID: 1251070185707629716}
   - component: {fileID: 4725008075250319956}
   - component: {fileID: 4805259178651906498}
@@ -2012,6 +2027,19 @@ RectTransform:
   m_AnchoredPosition: {x: -510.623, y: -282.0239}
   m_SizeDelta: {x: 84.7281, y: 104.2852}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2732760696630000535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3594501067134686510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cee38bededc35147976231a7abbf5a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeCam: {fileID: 0}
 --- !u!222 &1251070185707629716
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4577,7 +4605,7 @@ GameObject:
   - component: {fileID: 7500894427274195528}
   m_Layer: 0
   m_Name: PlayerCam
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5502,6 +5530,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7003636112392144663}
+  - component: {fileID: 8514894032478862675}
   - component: {fileID: 8203143975213110197}
   - component: {fileID: 6189753167174471137}
   - component: {fileID: 4561929778899986305}
@@ -5532,6 +5561,19 @@ RectTransform:
   m_AnchoredPosition: {x: -510.628, y: -281.68573}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8514894032478862675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7272258775028090361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cee38bededc35147976231a7abbf5a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeCam: {fileID: 0}
 --- !u!222 &8203143975213110197
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5903,6 +5945,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2171893353705393521}
+  - component: {fileID: 494878843565496303}
   - component: {fileID: 4548605161420113325}
   - component: {fileID: 5405834169111896669}
   - component: {fileID: 6729697222505734298}
@@ -5933,6 +5976,19 @@ RectTransform:
   m_AnchoredPosition: {x: -510.63, y: -282.0274}
   m_SizeDelta: {x: 100, y: 74.9498}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &494878843565496303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8955363678880339714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cee38bededc35147976231a7abbf5a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeCam: {fileID: 0}
 --- !u!222 &4548605161420113325
 CanvasRenderer:
   m_ObjectHideFlags: 0
