@@ -10,6 +10,8 @@ public class SelectTeam : NetworkBehaviour
     
     [SerializeField] private Renderer playerCloth;
     [SerializeField] private TextMeshProUGUI teamNumber;
+    [SerializeField] private TextMeshProUGUI teamNumberOutside;
+    
     
     private void OnTriggerEnter(Collider col)
     {
@@ -44,10 +46,12 @@ public class SelectTeam : NetworkBehaviour
 
             player.gameObject.tag = "Team1";
             Debug.Log("Player set to Team 1");
-
+            teamNumberOutside.text = "Team 1";
+            teamNumberOutside.color = new Color32(145, 226, 27, 255);
 
             if(!IsOwner) return;         
             teamNumber.text = "Team 1";
+
         }
 
         if(code == 1)
@@ -57,9 +61,12 @@ public class SelectTeam : NetworkBehaviour
 
             player.gameObject.tag = "Team2";
             Debug.Log("Player set to Team 2");
+            teamNumberOutside.text = "Team 2";
+             teamNumberOutside.color = new Color32(226, 158, 27, 255);
 
             if(!IsOwner) return;
             teamNumber.text = "Team 2";
+            
         }
     }    
 

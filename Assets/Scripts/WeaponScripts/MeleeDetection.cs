@@ -7,8 +7,8 @@ public class MeleeDetection : NetworkBehaviour
 {
     public MeleeAttack MeleeAttack;
     // public GameObject hitParticle; --- PUT VFX PARTICLE HERE
-    [SerializeField]
-    public float knockbackForce;
+
+    public NetworkVariable<float> knockbackStrength = new NetworkVariable<float>(65, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     [SerializeField] private GameObject player;
 
@@ -36,7 +36,7 @@ public class MeleeDetection : NetworkBehaviour
                 // Instantiate(hitParticle, new Vector3(other.transform.position.x, other.transform.position.y, other.transform.position.z), other.transform.rotation); --- INSTANTIATE VFX PARTICLE
 
                 Vector3 knockbackDirection = (other.transform.position - transform.position).normalized;
-                other.GetComponent<Rigidbody>().AddForce(knockbackDirection * knockbackForce, ForceMode.Impulse);
+                other.GetComponent<Rigidbody>().AddForce(knockbackDirection * knockbackStrength.Value, ForceMode.Impulse);
 
 
                 Debug.Log("Team 1 attack");
@@ -49,7 +49,7 @@ public class MeleeDetection : NetworkBehaviour
                 // Instantiate(hitParticle, new Vector3(other.transform.position.x, other.transform.position.y, other.transform.position.z), other.transform.rotation); --- INSTANTIATE VFX PARTICLE
 
                 Vector3 knockbackDirection = (other.transform.position - transform.position).normalized;
-                other.GetComponent<Rigidbody>().AddForce(knockbackDirection * knockbackForce, ForceMode.Impulse);
+                other.GetComponent<Rigidbody>().AddForce(knockbackDirection * knockbackStrength.Value, ForceMode.Impulse);
 
 
                 Debug.Log("Team 2 attack");
@@ -62,7 +62,7 @@ public class MeleeDetection : NetworkBehaviour
                 // Instantiate(hitParticle, new Vector3(other.transform.position.x, other.transform.position.y, other.transform.position.z), other.transform.rotation); --- INSTANTIATE VFX PARTICLE
 
                 Vector3 knockbackDirection = (other.transform.position - transform.position).normalized;
-                other.GetComponent<Rigidbody>().AddForce(knockbackDirection * knockbackForce, ForceMode.Impulse);
+                other.GetComponent<Rigidbody>().AddForce(knockbackDirection * knockbackStrength.Value, ForceMode.Impulse);
 
 
                 Debug.Log("Dummy attacked");

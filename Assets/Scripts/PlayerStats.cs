@@ -18,8 +18,8 @@ public class PlayerStats : NetworkBehaviour
         if(!IsOwner) return;
         
         speedCount.text = "Speed: " + playerController.GetComponent<PlayerController>().moveSpeed.Value.ToString();
-        knockbackStrength.text = "Knockback Str: " + hand2.GetComponent<MeleeDetection>().knockbackForce.ToString();
-        ammo.text = "Eggbomb Ammo: " + playerController.GetComponent<EggBombGun>().ammo.Value.ToString();      
+        knockbackStrength.text = "Knockback Str: " + hand2.GetComponent<MeleeDetection>().knockbackStrength.Value.ToString();
+        ammo.text = ": " + playerController.GetComponent<EggBombGun>().ammo.Value.ToString();
 
     }
 

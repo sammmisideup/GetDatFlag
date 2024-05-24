@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
+using UnityEngine.UI;
 
 public class WeaponPickup : NetworkBehaviour
 {
     [SerializeField] private GameObject weaponPunch;
     [SerializeField] private GameObject weaponClub;
     [SerializeField] private GameObject weaponHammer;
+    [SerializeField] private Image hammerIcon;
+    [SerializeField] private Image clubIcon;
+        
     public WeaponCharge WeaponCharge;
     public AudioClip pickupSound;
 
@@ -69,6 +73,14 @@ public class WeaponPickup : NetworkBehaviour
 
     private void SetClub()
     {
+        Color32 clubColor = clubIcon.GetComponent<Image>().color;
+        clubColor.a = 255;
+        clubIcon.GetComponent<Image>().color = clubColor;
+
+        Color32 hammerColor = hammerIcon.GetComponent<Image>().color;
+        hammerColor.a = 50;
+        hammerIcon.GetComponent<Image>().color = hammerColor;     
+
         weaponPunch.SetActive(false);
         weaponClub.SetActive(true);
         weaponHammer.SetActive(false);
@@ -77,6 +89,14 @@ public class WeaponPickup : NetworkBehaviour
 
     private void SetHammer()
     {
+        Color32 clubColor = clubIcon.GetComponent<Image>().color;
+        clubColor.a = 50;
+        clubIcon.GetComponent<Image>().color = clubColor;
+
+        Color32 hammerColor = hammerIcon.GetComponent<Image>().color;
+        hammerColor.a = 255;
+        hammerIcon.GetComponent<Image>().color = hammerColor;        
+
         weaponPunch.SetActive(false);
         weaponClub.SetActive(false);
         weaponHammer.SetActive(true);

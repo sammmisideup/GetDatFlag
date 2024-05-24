@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
+using UnityEngine.UI;
 
 public class WeaponCharge : NetworkBehaviour
 {
@@ -10,7 +11,10 @@ public class WeaponCharge : NetworkBehaviour
 
     [SerializeField] private GameObject clubWeapon;
     [SerializeField] private GameObject stunWeapon;
-    [SerializeField] private GameObject punchWeapon;    
+    [SerializeField] private GameObject punchWeapon;
+    
+    [SerializeField] private Image hammerIcon;
+    [SerializeField] private Image clubIcon;
 
     void Update()
     {
@@ -50,8 +54,16 @@ public class WeaponCharge : NetworkBehaviour
 
         if (Input.GetKeyDown(KeyCode.G) && IsOwner) // && Time.time > timeBetweenShots.Value - add if you want fire rate
         {
-           DropWeaponServerRpc();
-           ValueChangeServerRpc(2);
+            Color32 clubColor = clubIcon.GetComponent<Image>().color;
+            clubColor.a = 50;
+            clubIcon.GetComponent<Image>().color = clubColor;
+
+            Color32 hammerColor = hammerIcon.GetComponent<Image>().color;
+            hammerColor.a = 50;
+            hammerIcon.GetComponent<Image>().color = hammerColor;  
+
+            DropWeaponServerRpc();
+            ValueChangeServerRpc(2);
         }    
 
     }
@@ -103,6 +115,7 @@ public class WeaponCharge : NetworkBehaviour
     private void DropWeaponServerRpc()
     {
         ResetWeaponClientRpc();
+        
     }    
 
 }

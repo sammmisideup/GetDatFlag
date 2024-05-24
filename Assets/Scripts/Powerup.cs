@@ -2,16 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
+using UnityEngine.UI;
 
 public class Powerup : NetworkBehaviour
 {
     public NetworkVariable<float> buffedMovespeed = new NetworkVariable<float>(6, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
-    public NetworkVariable<float> buffedKnockback = new NetworkVariable<float>(35, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<float> buffedKnockback = new NetworkVariable<float>(60, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     [SerializeField] private GameObject playerController;
     [SerializeField] private GameObject hand2;
-
+    [SerializeField] private Image speedIcon;
+    [SerializeField] private Image strengthIcon;
     public AudioClip pickupSound;    
 
     private void OnTriggerEnter(Collider col)
@@ -99,9 +101,18 @@ public class Powerup : NetworkBehaviour
     }
     IEnumerator SpeedBoost()
     {
+        Color32 speedColor = speedIcon.GetComponent<Image>().color;
+        speedColor.a = 255;
+        speedIcon.GetComponent<Image>().color = speedColor;        
         playerController.GetComponent<PlayerController>().moveSpeed.Value += buffedMovespeed.Value;
+
         yield return new WaitForSeconds(5f);
+
+        Color32 speedColor2 = speedIcon.GetComponent<Image>().color;
+        speedColor2.a = 50;
+        speedIcon.GetComponent<Image>().color = speedColor2; 
         playerController.GetComponent<PlayerController>().moveSpeed.Value = 8f;
+
     }
 
     IEnumerator SlowDown()
@@ -113,9 +124,18 @@ public class Powerup : NetworkBehaviour
 
     IEnumerator KnockbackBoost()
     {
-        hand2.GetComponent<MeleeDetection>().knockbackForce += buffedKnockback.Value;
+        Color32 strColor = strengthIcon.GetComponent<Image>().color;
+        strColor.a = 255;
+        strengthIcon.GetComponent<Image>().color = strColor;  
+        hand2.GetComponent<MeleeDetection>().knockbackStrength.Value += buffedKnockback.Value;
+
         yield return new WaitForSeconds(6f);
-        hand2.GetComponent<MeleeDetection>().knockbackForce = 65;
+
+        Color32 strColor2 = strengthIcon.GetComponent<Image>().color;
+        strColor2.a = 50;
+        strengthIcon.GetComponent<Image>().color = strColor2; 
+
+        hand2.GetComponent<MeleeDetection>().knockbackStrength.Value = 65;
     } 
 
 
